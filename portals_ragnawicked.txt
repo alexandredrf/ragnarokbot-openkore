@@ -6,6 +6,7 @@
 # O x/y de destino e aproximado: ao chegar no mapa o bot recalcula a rota.
 
 # Teletransportadora#Ragn em Prontera. A 1a opcao leva cada personagem ao seu mapa
-# (Kyo Sinx -> xmas_dun02, Ashiba -> orcsdun01); cada bot usa a linha do seu lockMap.
+# (Kyo Sinx -> xmas_dun02, Ashiba -> orcsdun01, conta3 -> pay_dun01); cada bot usa a linha do seu lockMap.
 prontera 163 190 xmas_dun02 129 130 0 r0
 prontera 163 190 orcsdun01 32 172 0 r0
+prontera 163 190 pay_dun01 19 33 0 r0

@@ -12,6 +12,7 @@ servidor privado RagnaWickeD (`137.131.220.233`, login 6900 / char 6121 / map 51
 | Login → char → map | **OK**: testado com a conta real (combate, coleta, inventário e `@storage` validados). |
 | Farm Kyo Sinx | `xmas_dun02` (seção 6). |
 | Farm Ashiba | `orcsdun01` (seção 6.1), testado: mata mortos-vivos com Cura. |
+| Farm conta3 | `pay_dun01` (seção 6.2), testado: mata esqueletos, coleta só cartas e Maçã de Guilherme Tell. |
 
 ## Estrutura
 
@@ -135,6 +136,18 @@ Priest nível 71, Cura 10. Ataca mortos-vivos com Cura (dano sagrado) e ignora o
 | `@autoloot 100` a cada entrada no jogo (coleta direta, sem andar até o item) | `macros.txt`, `itemsTakeAuto 0` |
 | Peso ≥ 70%: `@storage` e guarda tudo exceto Red/Novice Potion e Blue Gemstone | `storageAuto*`, `items_control.txt` |
 
+## 6.2 Farm — conta3 (`bots/conta3/control/`)
+
+| Comportamento | Onde |
+|---|---|
+| Mapa fixo `pay_dun01`, entra pela Teletransportadora (opção 1) | `lockMap`, `portals_ragnawicked.txt` |
+| Ataca tudo, exceto plantas e cogumelos. Só o Esqueleto Arqueiro (1016) dropa a Maçã de Guilherme Tell (Apple of Archer 2285, 0,03%) | `mon_control.txt` (`all 1`) |
+| Coleta só cartas e Apple of Archer (2285/5265); o resto fica no chão | `pickupitems.txt` (`gen_pickupitems.pl ... 2285 5265 --sem-acessorios`) |
+| Pontos de atributo sempre em Agilidade (até 99) | `statsAddAuto_list 99 agi` |
+| Novice Potion com HP < 60% se não houver White Potion; repõe 200 do storage quando cai abaixo de 30 | `useSelf_item Novice Potion`, `getAuto Novice Potion` |
+| Peso ≥ 50%: `@storage` e guarda tudo exceto consumíveis e flechas | `storageAuto*`, `items_control.txt` |
+| Quando Bênção e Agilidade acabam no mapa: `@go 0` para rebuffar | `macros.txt` |
+
 ## 7. Vários personagens
 
 1. Copie `bots/kyo/` para `bots/<novo>/` (sem o `account.env` e os `logs`).
@@ -155,6 +168,7 @@ git clone https://github.com/<usuario>/<repo>.git bot && cd bot
 # Credenciais (não vêm do git): uma por bot
 cp account.env.example bots/kyo/account.env    && nano bots/kyo/account.env
 cp account.env.example bots/ashiba/account.env && nano bots/ashiba/account.env
+cp account.env.example bots/conta3/account.env && nano bots/conta3/account.env
 chmod 600 bots/*/account.env
 
 docker compose up -d --build     # build na primeira vez (~3 min) e sobe todos os bots

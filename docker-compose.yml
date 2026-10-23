@@ -33,3 +33,15 @@ services:
       - ./plugins/fleeMonster:/opt/openkore/plugins/fleeMonster:ro
       - ./bots/ashiba/control:/data/control
       - ./bots/ashiba/logs:/data/logs
+
+  conta3:
+    <<: *openkore
+    container_name: openkore-conta3
+    env_file:
+      - path: ./bots/conta3/account.env
+        required: false
+    volumes:
+      - ./servers.txt:/opt/openkore/tables/servers.txt:ro
+      - ./plugins/fleeMonster:/opt/openkore/plugins/fleeMonster:ro
+      - ./bots/conta3/control:/data/control
+      - ./bots/conta3/logs:/data/logs

@@ -8,10 +8,12 @@
 #   perl tools/gen_pickupitems.pl item_db_equip.yml item_db_etc.yml 727 > bots/<nome>/control/pickupitems.txt
 #
 # Argumentos numericos = IDs extras para coletar (ex.: 727 = Opala).
+# --sem-acessorios = so cartas e os IDs extras.
 use strict;
 use warnings;
 
-my @files = grep { !/^\d+$/ } @ARGV;
+my $semAcc = grep { $_ eq '--sem-acessorios' } @ARGV;
+my @files = grep { !/^\d+$/ && $_ ne '--sem-acessorios' } @ARGV;
 my @extra = grep { /^\d+$/ } @ARGV;
 my (%name, @cards, @accs, $cur);
 
@@ -38,7 +40,9 @@ for my $file (@files) {
 print "# Gerado por tools/gen_pickupitems.pl - nao edite a mao, rode o script de novo.\n";
 print "# Formato: <id> <flag>  (0 = ignora, 2 = pega o mais rapido possivel)\n";
 print "all 0\n";
-for my $section (['Extras', \@extra], ['Cartas', \@cards], ['Acessorios', \@accs]) {
+my @sections = (['Extras', \@extra], ['Cartas', \@cards]);
+push @sections, ['Acessorios', \@accs] unless $semAcc;
+for my $section (@sections) {
 	my ($title, $ids) = @$section;
 	print "\n# --- $title (", scalar(@$ids), ") ---\n";
 	printf "%d 2 # %s\n", $_, $name{$_} // '' for sort { $a <=> $b } @$ids;

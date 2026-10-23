@@ -1,0 +1,18 @@
+# Macros do plugin "macro" (ja carregado no sys.txt).
+
+# Rebuff: quando Bencao e Agilidade acabam no mapa de farm, volta para Prontera com @go 0.
+# O servidor buffa automaticamente ao chegar na cidade e o lockMap traz o personagem de
+# volta pela Teletransportadora (prontera 163 190, ver portals_ragnawicked.txt).
+# timeout evita repetir o comando caso o @go demore ou falhe.
+automacro rebuffEmProntera {
+	map pay_dun01
+	status not Blessing
+	status not Increase Agility
+	timeout 30
+	call irParaProntera
+}
+
+macro irParaProntera {
+	log [rebuff] Buffs acabaram, voltando para Prontera com @go 0
+	do c @go 0
+}
