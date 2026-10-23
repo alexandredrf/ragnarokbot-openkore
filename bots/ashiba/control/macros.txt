@@ -1,0 +1,37 @@
+# Macros do plugin "macro" (ja carregado no sys.txt).
+
+# @autoloot a cada entrada no jogo (inclusive apos reconectar).
+# "@autoloot 100" define a taxa (nao alterna), entao repetir e seguro.
+automacro autolootAoLogar {
+	console /You are now in the game/
+	timeout 5
+	call ligarAutoloot
+}
+
+macro ligarAutoloot {
+	pause 3
+	do c @autoloot 100
+}
+
+# Pouca vida (a autocura nao deu conta): volta para Prontera com @go 0.
+# O servidor cura e buffa ao chegar na cidade; o lockMap traz de volta pela
+# Teletransportadora (prontera 163 190, ver portals_ragnawicked.txt).
+automacro fugirVidaBaixa {
+	map orcsdun01
+	hp < 30%
+	timeout 20
+	call irParaProntera
+}
+
+# Sem SP nao ha Cura (nem para atacar, nem para se curar): mesma saida.
+automacro fugirSemSP {
+	map orcsdun01
+	sp < 10%
+	timeout 20
+	call irParaProntera
+}
+
+macro irParaProntera {
+	log [recuperar] HP/SP baixo, voltando para Prontera com @go 0
+	do c @go 0
+}

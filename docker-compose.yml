@@ -1,0 +1,35 @@
+# Um servico por conta/personagem. Para adicionar outro, copie o bloco "kyo",
+# troque o nome e a pasta em ./bots/<nome>/ (veja README.md).
+x-openkore: &openkore
+  build: .
+  image: openkore-ragnawicked
+  stdin_open: true   # console interativo (digitar senha, comandos)
+  tty: true
+  restart: unless-stopped   # VPS: volta sozinho apos reboot/queda (docker compose stop para parar)
+
+services:
+  kyo:
+    <<: *openkore
+    container_name: openkore-kyo
+    # Credenciais (KORE_USERNAME/KORE_PASSWORD/KORE_CHAR). Arquivo ignorado pelo git;
+    # se nao existir, o OpenKore pergunta no console.
+    env_file:
+      - path: ./bots/kyo/account.env
+        required: false
+    volumes:
+      - ./servers.txt:/opt/openkore/tables/servers.txt:ro
+      - ./plugins/fleeMonster:/opt/openkore/plugins/fleeMonster:ro
+      - ./bots/kyo/control:/data/control
+      - ./bots/kyo/logs:/data/logs
+
+  ashiba:
+    <<: *openkore
+    container_name: openkore-ashiba
+    env_file:
+      - path: ./bots/ashiba/account.env
+        required: false
+    volumes:
+      - ./servers.txt:/opt/openkore/tables/servers.txt:ro
+      - ./plugins/fleeMonster:/opt/openkore/plugins/fleeMonster:ro
+      - ./bots/ashiba/control:/data/control
+      - ./bots/ashiba/logs:/data/logs

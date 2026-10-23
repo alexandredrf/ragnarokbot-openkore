@@ -1,0 +1,4 @@
+# Coleta tudo do chao. Para voltar a coletar so cartas/acessorios/opala, regenere com
+# tools/gen_pickupitems.pl (instrucoes no cabecalho do script).
+# Formato: <nome ou id> <flag>  (0 = ignora, 1 = pega, 2 = pega o mais rapido possivel)
+all 2

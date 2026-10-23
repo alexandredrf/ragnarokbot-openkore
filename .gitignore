@@ -1,0 +1,7 @@
+# Credenciais: nunca versionar (modelo em account.env.example)
+bots/*/account.env
+.env
+*.secret
+
+# Logs dos bots
+bots/*/logs/

@@ -1,0 +1,26 @@
+# Tabela de servidores do OpenKore, montada em tables/servers.txt.
+# So contem o RagnaWickeD: o OpenKore le apenas as entradas daqui.
+#
+# Origem dos valores (window.ROConfig do cliente web, 2026-10-22):
+#   packetver 20181031, renewal false, version 55, langtype 12, packetKeys false
+# Confirmado na captura WS do map server: CZ_ENTER2 = 0x0436 (19 B) em claro,
+# sync = 0x0360 (6 B) -> mesmos opcodes do kRO_Ragexe_2018_10_31a, sem ofuscacao.
+
+[RagnaWickeD]
+ip 137.131.220.233
+port 6900
+private 1
+# master_version = clienttype do pacote de login (langtype do cliente)
+master_version 12
+version 55
+serverType kRO_Ragexe_2018_10_31a
+serverEncoding Western
+# Bloco de personagem com EXP em 64 bits (packetver >= 20170830)
+charBlockSize 155
+# recvpackets mais proximo da packetver 20181031
+addTableFolders translated/kRO_english;kRO/Ragexe_2018_11_14d;kRO
+# Login 0x0064 em texto puro (o cliente usa calculateHash=false)
+masterLogin_packet 0064
+# Lista de itens 0B09/0B0A com ID de 2 bytes (24 B empilhavel / 57 B equipamento), conferido em dump
+itemListUseOldType 1
+# Sem sendCryptKeys: o cliente nao ofusca opcodes (packetKeys=false)
