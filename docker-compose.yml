@@ -46,3 +46,15 @@ services:
       - ./plugins/fleeMonster:/opt/openkore/plugins/fleeMonster:ro
       - ./bots/conta3/control:/data/control
       - ./bots/conta3/logs:/data/logs
+
+  conta4:
+    <<: *openkore
+    container_name: openkore-conta4
+    env_file:
+      - path: ./bots/conta4/account.env
+        required: false
+    volumes:
+      - ./servers.txt:/opt/openkore/tables/servers.txt:ro
+      - ./plugins/fleeMonster:/opt/openkore/plugins/fleeMonster:ro
+      - ./bots/conta4/control:/data/control
+      - ./bots/conta4/logs:/data/logs

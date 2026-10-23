@@ -11,6 +11,7 @@ servidor privado RagnaWickeD (`137.131.220.233`, login 6900 / char 6121 / map 51
 | `servers.txt` | **OK**: `kRO_Ragexe_2018_10_31a`, charBlockSize 155, `itemListUseOldType 1`, sem ofuscação. |
 | Login → char → map | **OK**: testado com a conta real (combate, coleta, inventário e `@storage` validados). |
 | Farm Kyo Sinx | `xmas_dun02` (seção 6). |
+| Farm Obss (conta4) | `xmas_dun02`, mesma configuração do Kyo (seção 6), testado. |
 | Suporte Ashiba | `gef_fild14` (seção 6.1): segue o Matador, cura e buffa a party. |
 | Farm Matador (conta3) | `gef_fild14` (seção 6.2), com a Ashiba de suporte; coleta só cartas. |
 
@@ -123,6 +124,10 @@ Para coletar só itens específicos (ex.: cartas, acessórios e Opala), gere o `
 `tools/gen_pickupitems.pl`, que usa o item_db pré-renovação do rAthena
 (instruções no cabeçalho do script). Para coletar outro item, passe o ID como argumento extra.
 
+O Obss (Bardo, `bots/conta4/control/`, conta 4) usa a mesma configuração, slot 0 (`char 0`), ataque corpo a corpo,
+com duas diferenças: não senta para descansar (`sitAuto_*` 0) e usa `@go 0` com HP < 40% ou quando Bênção
+ou Agilidade acabar (`macros.txt`), voltando pela Teletransportadora.
+
 ## 6.1 Suporte — Ashiba (`bots/ashiba/control/`, conta 2)
 
 Priest nível 71. Acompanha o Matador (conta3) em `gef_fild14`, só cura e buffa; nunca ataca.
@@ -178,6 +183,7 @@ git clone https://github.com/<usuario>/<repo>.git bot && cd bot
 cp account.env.example bots/kyo/account.env    && nano bots/kyo/account.env
 cp account.env.example bots/ashiba/account.env && nano bots/ashiba/account.env
 cp account.env.example bots/conta3/account.env && nano bots/conta3/account.env
+cp account.env.example bots/conta4/account.env && nano bots/conta4/account.env
 chmod 600 bots/*/account.env
 
 docker compose up -d --build     # build na primeira vez (~3 min) e sobe todos os bots

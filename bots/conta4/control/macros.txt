@@ -1,0 +1,33 @@
+# Macros do plugin "macro" (ja carregado no sys.txt).
+# O Obss nao senta para descansar (sitAuto_* 0 no config.txt): em vez disso volta para
+# Prontera com @go 0, onde o servidor cura e buffa ao chegar, e o lockMap traz o
+# personagem de volta pela Teletransportadora (prontera 163 190, ver portals_ragnawicked.txt).
+# timeout evita repetir o comando caso o @go demore ou falhe.
+
+# Sem buffs: Bencao ou Agilidade acabou (o servidor da os dois juntos).
+automacro semBencao {
+	map xmas_dun02
+	status not Blessing
+	timeout 30
+	call irParaProntera
+}
+
+automacro semAgilidade {
+	map xmas_dun02
+	status not Increase Agility
+	timeout 30
+	call irParaProntera
+}
+
+# Pouca vida (as pocoes nao deram conta).
+automacro vidaBaixa {
+	map xmas_dun02
+	hp < 40%
+	timeout 20
+	call irParaProntera
+}
+
+macro irParaProntera {
+	log [recuperar] Sem buffs ou HP baixo, voltando para Prontera com @go 0
+	do c @go 0
+}
