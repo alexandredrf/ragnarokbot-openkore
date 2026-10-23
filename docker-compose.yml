@@ -31,6 +31,7 @@ services:
     volumes:
       - ./servers.txt:/opt/openkore/tables/servers.txt:ro
       - ./plugins/fleeMonster:/opt/openkore/plugins/fleeMonster:ro
+      - ./plugins/attackedBy:/opt/openkore/plugins/attackedBy:ro
       - ./bots/ashiba/control:/data/control
       - ./bots/ashiba/logs:/data/logs
 

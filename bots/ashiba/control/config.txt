@@ -67,10 +67,10 @@ alias_heal sp 28
 allowedMaps
 allowedMaps_reaction 1
 
-attackAuto 2
+attackAuto 0
 attackAuto_routeToLock 1
 attackAuto_outOfLock 1
-attackAuto_party 1
+attackAuto_party 0
 attackAuto_onlyWhenSafe 0
 attackAuto_followTarget 1
 attackAuto_notInTown 1
@@ -190,8 +190,8 @@ dcOnServerClose 0
 dcOnJobLevel
 dcOnLevel
 
-follow 0
-followTarget
+follow 1
+followTarget Matador
 followEmotion 1
 followEmotion_distance 4
 followFaceDirection 0
@@ -214,7 +214,7 @@ cartMaxWeight 7900
 itemsTakeGreed 0
 itemsCheckWeight 1
 
-lockMap orcsdun01
+lockMap gef_fild14
 lockMap_x
 lockMap_y
 lockMap_randX
@@ -223,7 +223,7 @@ lockMap_randY
 route_escape_reachedNoPortal 1
 route_escape_randomWalk 1
 route_escape_shout
-route_randomWalk 1
+route_randomWalk 0
 route_randomWalk_inLockOnly 0
 route_randomWalk_inTown 0
 route_randomWalk_maxRouteTime 75
@@ -289,8 +289,8 @@ buyerShop_random 0
 
 sitAuto_hp_lower 0
 sitAuto_hp_upper 0
-sitAuto_sp_lower 0
-sitAuto_sp_upper 0
+sitAuto_sp_lower 25
+sitAuto_sp_upper 70
 sitAuto_follow 0
 sitAuto_over_50 0
 sitAuto_idle 1
@@ -602,15 +602,15 @@ pet_return 20
 # You can copy & paste any block multiple times. So if you want to
 # configure two attack skills, just duplicate the attackSkillSlot block.
 
-# Cura causa dano em mortos-vivos: e o ataque principal (alcance 9).
-attackSkillSlot Heal {
-	lvl 10
-	dist 7
-	maxDist 9
+# Suporte: nao ataca (attackAuto 0).
+attackSkillSlot {
+	lvl
+	dist 1
+	maxDist 1
 	maxCastTime 0
 	minCastTime 0
 	previousDamage
-	monsters 1153, 1152
+	monsters
 	notMonsters
 	maxAttempts 0
 	maxUses 0
@@ -627,7 +627,6 @@ attackSkillSlot Heal {
 	equip_armor
 	equip_shoes
 	equip_arrow
-	sp > 40
 	# [checkSelfCondition]
 	# [checkMonsterCondition]
 }
@@ -653,9 +652,30 @@ doCommand {
 	# [checkSelfCondition]
 }
 
+# Suporte: buffs e cura em si mesma. Gloria (LUK +30) vale para a party inteira.
+useSelf_skill Increase Agility {
+	lvl 10
+	whenStatusInactive Increase Agility
+	sp > 60
+	timeout 3
+}
+
+useSelf_skill Blessing {
+	lvl 10
+	whenStatusInactive Blessing
+	sp > 60
+	timeout 3
+}
+
+useSelf_skill Gloria {
+	whenStatusInactive Gloria
+	sp > 40
+	timeout 3
+}
+
 useSelf_skill Heal {
 	lvl 10
-	hp < 65%
+	hp < 50%
 	sp > 40
 	maxCastTime 0
 	minCastTime 0
@@ -668,29 +688,48 @@ useSelf_skill_smartHeal 1
 
 partySkillDistance 0..8
 
-partySkill {
-	lvl
+# Party (target vazio = qualquer membro). Cura vem primeiro: tem prioridade sobre os buffs.
+partySkill Heal {
+	lvl 10
 	dist 1
-	maxDist 8
-	maxCastTime 0
-	minCastTime 0
+	maxDist 9
 	target
-	notPartyOnly 0
-	isSelfSkill 0
-	noSmartHeal 0
-	# [checkSelfCondition]
-	# [checkPlayerCondition]
+	target_hp < 50%
+	sp > 13
 }
 
-monsterSkill {
+partySkill Increase Agility {
+	lvl 10
+	dist 1
+	maxDist 9
 	target
-	maxUses
-	lvl
+	target_whenStatusInactive Increase Agility
+	sp > 60
+	target_timeout 3
+}
+
+partySkill Blessing {
+	lvl 10
+	dist 1
+	maxDist 9
+	target
+	target_whenStatusInactive Blessing
+	sp > 60
+	target_timeout 3
+}
+
+# Lex Aeterna (dano dobrado no proximo golpe) no monstro que o Matador esta batendo.
+# target_attackedBy vem do plugin attackedBy (plugins/attackedBy). O timeout evita
+# gastar SP reaplicando antes do golpe consumir o efeito.
+monsterSkill Lex Aeterna {
+	lvl 1
 	maxCastTime 0
 	minCastTime 0
 	isSelfSkill 0
-	# [checkSelfCondition]
-	# [checkMonsterCondition]
+	sp > 30%
+	target_attackedBy Matador
+	target_dist 0..9
+	target_timeout 3
 }
 
 autoSwitch_default_rightHand

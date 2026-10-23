@@ -214,7 +214,7 @@ cartMaxWeight 7900
 itemsTakeGreed 0
 itemsCheckWeight 1
 
-lockMap pay_dun01
+lockMap gef_fild14
 lockMap_x
 lockMap_y
 lockMap_randX
@@ -651,13 +651,14 @@ doCommand {
 	# [checkSelfCondition]
 }
 
-useSelf_skill {
-	lvl
+# Envenenar Arma (propriedade veneno + chance de envenenar): renova quando o efeito acaba.
+# Sem lvl = usa o nivel mais alto aprendido.
+useSelf_skill Enchant Poison {
+	whenStatusInactive Enchant Poison
+	sp > 20
 	maxCastTime 0
 	minCastTime 0
-	smartEncore 0
-	noSmartHeal 0
-	# [checkSelfCondition]
+	timeout 3
 }
 
 useSelf_skill_smartHeal 1

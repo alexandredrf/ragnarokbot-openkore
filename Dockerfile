@@ -31,7 +31,9 @@ RUN git clone "$OPENKORE_REPO" /opt/openkore \
 COPY --chown=kore:kore portals_ragnawicked.txt /tmp/portals_ragnawicked.txt
 RUN printf '\n# --- RagnaWickeD (portals_ragnawicked.txt) ---\n' >> tables/portals.txt \
     && grep -v '^\s*#' /tmp/portals_ragnawicked.txt | grep -v '^\s*$' >> tables/portals.txt \
-    && rm /tmp/portals_ragnawicked.txt
+    && rm /tmp/portals_ragnawicked.txt \
+    # gef_fild14 falta na tabela de mapas do upstream: sem ele o lockMap e recusado ("doesn't exist").
+    && printf 'gef_fild14.rsw#Geffen Field\n' >> tables/translated/kRO_english/maps.txt
 
 # Pre-compila tables/portalsLOS.txt (senao cada container --rm leva minutos recompilando).
 # Usa a entrada "Localhost" do servers.txt original so para passar do carregamento de tabelas;

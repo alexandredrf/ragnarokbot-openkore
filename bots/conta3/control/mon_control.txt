@@ -58,11 +58,8 @@
 # <attack> = 1
 
 
-# Farm em pay_dun01: ataca tudo (cartas de todos), plantas e cogumelos ficam de fora (abaixo).
-# So o Esqueleto Arqueiro dropa a Maca de Guilherme Tell (Apple of Archer).
+# Farm em gef_fild14 (com a Ashiba de suporte): ataca tudo; plantas e cogumelos ficam de fora (abaixo).
 all 1 0 0
-1016 1 0 0 # Archer Skeleton (Esqueleto Arqueiro)
-1028 1 0 0 # Soldier Skeleton (Esqueleto Soldado)
 
 ##### Eggs #####
 # Por ID: o servidor manda os nomes em portugues, entao nomes em ingles nao batem.

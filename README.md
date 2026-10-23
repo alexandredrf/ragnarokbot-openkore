@@ -11,8 +11,8 @@ servidor privado RagnaWickeD (`137.131.220.233`, login 6900 / char 6121 / map 51
 | `servers.txt` | **OK**: `kRO_Ragexe_2018_10_31a`, charBlockSize 155, `itemListUseOldType 1`, sem ofuscação. |
 | Login → char → map | **OK**: testado com a conta real (combate, coleta, inventário e `@storage` validados). |
 | Farm Kyo Sinx | `xmas_dun02` (seção 6). |
-| Farm Ashiba | `orcsdun01` (seção 6.1), testado: mata mortos-vivos com Cura. |
-| Farm conta3 | `pay_dun01` (seção 6.2), testado: mata esqueletos, coleta só cartas e Maçã de Guilherme Tell. |
+| Suporte Ashiba | `gef_fild14` (seção 6.1): segue o Matador, cura e buffa a party. |
+| Farm Matador (conta3) | `gef_fild14` (seção 6.2), com a Ashiba de suporte; coleta só cartas. |
 
 ## Estrutura
 
@@ -24,6 +24,7 @@ servers.txt           tabela de servidores (só o RagnaWickeD)
 account.env.example   modelo do arquivo de credenciais
 portals_ragnawicked.txt  NPCs de teleporte do servidor (entram na tabela de rotas no build)
 plugins/fleeMonster/  plugin próprio: foge andando de monstros perigosos (montado no container)
+plugins/attackedBy/   plugin próprio: condição target_attackedBy (monstro que um jogador está batendo)
 tools/                gerador do pickupitems.txt
 bots/<nome>/control/  config.txt, mon_control.txt, items_control.txt... (versionado, SEM senha)
 bots/<nome>/account.env  credenciais (ignorado pelo git, opcional)
@@ -122,31 +123,39 @@ Para coletar só itens específicos (ex.: cartas, acessórios e Opala), gere o `
 `tools/gen_pickupitems.pl`, que usa o item_db pré-renovação do rAthena
 (instruções no cabeçalho do script). Para coletar outro item, passe o ID como argumento extra.
 
-## 6.1 Farm — Ashiba (`bots/ashiba/control/`, conta 2)
+## 6.1 Suporte — Ashiba (`bots/ashiba/control/`, conta 2)
 
-Priest nível 71, Cura 10. Ataca mortos-vivos com Cura (dano sagrado) e ignora o resto.
-
-| Comportamento | Onde |
-|---|---|
-| Mapa fixo `orcsdun01` (80 Orc Zumbi + 10 Orc Esqueleto) | `lockMap` |
-| Ataca só Orc Zumbi (1153) e Orc Esqueleto (1152); todo o resto ignorado mesmo se atacar | `mon_control.txt` (`all -1`) |
-| Ataque = Cura nível 10 a até 9 células, sem ataque físico | `attackSkillSlot Heal`, `attackUseWeapon 0` |
-| Autocura com HP < 65%; Red Potion se HP < 50% e SP sem dar para a Cura | `useSelf_skill Heal`, `useSelf_item Red Potion` |
-| HP < 30% ou SP < 10% no mapa: `@go 0` (o servidor cura/buffa na chegada) e volta pela Teletransportadora | `macros.txt` |
-| `@autoloot 100` a cada entrada no jogo (coleta direta, sem andar até o item) | `macros.txt`, `itemsTakeAuto 0` |
-| Peso ≥ 70%: `@storage` e guarda tudo exceto Red/Novice Potion e Blue Gemstone | `storageAuto*`, `items_control.txt` |
-
-## 6.2 Farm — conta3 (`bots/conta3/control/`)
+Priest nível 71. Acompanha o Matador (conta3) em `gef_fild14`, só cura e buffa; nunca ataca.
 
 | Comportamento | Onde |
 |---|---|
-| Mapa fixo `pay_dun01`, entra pela Teletransportadora (opção 1) | `lockMap`, `portals_ragnawicked.txt` |
-| Ataca tudo, exceto plantas e cogumelos. Só o Esqueleto Arqueiro (1016) dropa a Maçã de Guilherme Tell (Apple of Archer 2285, 0,03%) | `mon_control.txt` (`all 1`) |
+| Segue o Matador (mesma party); mapa fixo `gef_fild14` para voltar depois de morrer | `follow 1`, `followTarget Matador`, `lockMap`, `route_randomWalk 0` |
+| Não ataca nada, mesmo se for atacada | `attackAuto 0`, `mon_control.txt` (`all -1`) |
+| Mantém Agilidade, Bênção e Glória em si mesma (Glória vale para a party toda) | `useSelf_skill` |
+| Mantém Agilidade e Bênção em todos da party | `partySkill Increase Agility/Blessing` (`target_whenStatusInactive`) |
+| Cura nível 10 em quem estiver com HP < 50% (ela mesma ou a party) | `useSelf_skill Heal`, `partySkill Heal` |
+| Lex Aeterna no monstro que o Matador está batendo (a cada 3 s, só com SP > 30%) | `monsterSkill Lex Aeterna` + plugin `attackedBy` (`target_attackedBy Matador`) |
+| Senta para recuperar SP com SP < 25% até 70% | `sitAuto_sp_*` |
+| HP < 30% ou SP < 10% no mapa: `@go 0` e volta pela Teletransportadora | `macros.txt` |
+| Ao morrer volta pela Teletransportadora (opção "Último destino") | `portals_ragnawicked.txt` |
+
+## 6.2 Farm — Matador (`bots/conta3/control/`, conta 3)
+
+Assassino nível 67. Farma em `gef_fild14` com a Ashiba de suporte.
+
+| Comportamento | Onde |
+|---|---|
+| Mapa fixo `gef_fild14`, entra pela Teletransportadora (opção "Último destino") | `lockMap`, `portals_ragnawicked.txt` |
+| Ataca tudo, exceto plantas e cogumelos; foge com Fly Wing do Orc Hero/Orc Lord (MVPs) | `mon_control.txt` (`all 1`) |
 | Coleta só cartas e Apple of Archer (2285/5265); o resto fica no chão | `pickupitems.txt` (`gen_pickupitems.pl ... 2285 5265 --sem-acessorios`) |
 | Pontos de atributo sempre em Agilidade (até 99) | `statsAddAuto_list 99 agi` |
+| Envenenar Arma sempre ativo (renova quando acaba) | `useSelf_skill Enchant Poison` |
 | Novice Potion com HP < 60% se não houver White Potion; repõe 200 do storage quando cai abaixo de 30 | `useSelf_item Novice Potion`, `getAuto Novice Potion` |
 | Peso ≥ 50%: `@storage` e guarda tudo exceto consumíveis e flechas | `storageAuto*`, `items_control.txt` |
-| Quando Bênção e Agilidade acabam no mapa: `@go 0` para rebuffar | `macros.txt` |
+| Se ficar sem Bênção e Agilidade no mapa (Ashiba ausente): `@go 0` para rebuffar | `macros.txt` |
+
+A opção "Último destino" depende da última viagem de cada personagem: ao trocar o mapa de um bot,
+faça a primeira viagem para o mapa novo manualmente.
 
 ## 7. Vários personagens
 

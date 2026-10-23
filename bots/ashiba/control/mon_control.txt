@@ -58,11 +58,8 @@
 # <attack> = 1
 
 
-# Foco do farm em orcsdun01: so mortos-vivos, atacados com Cura (attackSkillSlot Heal).
-# Todo o resto e ignorado, mesmo se atacar (-1).
+# Suporte do Matador em gef_fild14: nao ataca nada, mesmo se for atacada (-1).
 all -1 0 0
-1153 1 0 0 # Orc Zombie (Orc Zumbi)
-1152 1 0 0 # Orc Skeleton (Orc Esqueleto)
 
 ##### Eggs #####
 # Por ID: o servidor manda os nomes em portugues, entao nomes em ingles nao batem.
