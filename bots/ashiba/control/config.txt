@@ -652,7 +652,7 @@ doCommand {
 	# [checkSelfCondition]
 }
 
-# Suporte: buffs e cura em si mesma. Gloria (LUK +30) vale para a party inteira.
+# Suporte: buffs e cura em si mesma. Magnificat (regeneracao de SP em dobro) vale para a party inteira.
 useSelf_skill Increase Agility {
 	lvl 10
 	whenStatusInactive Increase Agility
@@ -667,8 +667,8 @@ useSelf_skill Blessing {
 	timeout 3
 }
 
-useSelf_skill Gloria {
-	whenStatusInactive Gloria
+useSelf_skill Magnificat {
+	whenStatusInactive Magnificat
 	sp > 40
 	timeout 3
 }

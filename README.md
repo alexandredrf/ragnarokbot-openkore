@@ -12,7 +12,7 @@ servidor privado RagnaWickeD (`137.131.220.233`, login 6900 / char 6121 / map 51
 | Login → char → map | **OK**: testado com a conta real (combate, coleta, inventário e `@storage` validados). |
 | Farm Kyo Sinx | `anthell02` (seção 6): cartas, Geleia Real, Mel e Orelha de Elfo. |
 | Suporte Obss (conta4) | `gef_fild14` (seção 6.3): segue o King Slayer e toca Bragi e Crepúsculo Sangrento. |
-| Suporte Ashiba | `gef_fild14` (seção 6.1): segue o King Slayer, cura, buffa e dá Lex Aeterna. |
+| Suporte Ashiba | `gef_fild14` (seção 6.1): segue o King Slayer, cura, buffa (Magnificat) e dá Lex Aeterna. |
 | Farm Matador (conta3) | `anthell01` (seção 6.2), mesma missão do Kyo. |
 
 ## Estrutura
@@ -136,7 +136,7 @@ Priest nível 71. Acompanha o King Slayer (jogado pelo dono) em `gef_fild14` jun
 |---|---|
 | Segue o King Slayer (mesma party); mapa fixo `gef_fild14` para voltar depois de morrer | `follow 1`, `followTarget King Slayer`, `lockMap`, `route_randomWalk 0` |
 | Não ataca nada, mesmo se for atacada | `attackAuto 0`, `mon_control.txt` (`all -1`) |
-| Mantém Agilidade, Bênção e Glória em si mesma (Glória vale para a party toda) | `useSelf_skill` |
+| Mantém Agilidade, Bênção e Magnificat em si mesma (Magnificat vale para a party toda) | `useSelf_skill` |
 | Mantém Agilidade e Bênção em todos da party | `partySkill Increase Agility/Blessing` (`target_whenStatusInactive`) |
 | Cura nível 10 em quem estiver com HP < 50% (ela mesma ou a party) | `useSelf_skill Heal`, `partySkill Heal` |
 | Lex Aeterna no monstro que o King Slayer está batendo (a cada 3 s, só com SP > 30%) | `monsterSkill Lex Aeterna` + plugin `attackedBy` (`target_attackedBy King Slayer`) |
