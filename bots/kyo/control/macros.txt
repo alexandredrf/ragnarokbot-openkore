@@ -16,3 +16,25 @@ macro irParaProntera {
 	log [rebuff] Buffs acabaram, voltando para Prontera com @go 0
 	do c @go 0
 }
+
+# O Kyo nao senta para descansar (sitAuto_* 0 no config.txt): com pouca vida usa
+# @go 0, o servidor cura ao chegar em Prontera e o lockMap traz de volta.
+automacro vidaBaixa {
+	map anthell02
+	hp < 40%
+	timeout 20
+	call curarEmProntera
+}
+
+# Depois de morrer ele renasce em Prontera com pouca vida: @go 0 para receber a cura.
+automacro renascidoSemVida {
+	map prontera
+	hp < 80%
+	timeout 30
+	call curarEmProntera
+}
+
+macro curarEmProntera {
+	log [recuperar] HP baixo, @go 0 para o servidor curar
+	do c @go 0
+}

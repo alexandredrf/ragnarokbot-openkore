@@ -3,7 +3,7 @@
 # o Obss do mapa. @go 0 leva a Prontera (o servidor cura ao chegar) e o lockMap traz
 # de volta pela Teletransportadora (prontera 163 190, ver portals_ragnawicked.txt).
 automacro vidaBaixa {
-	map gef_fild14
+	map alde_dun02
 	hp < 40%
 	timeout 20
 	call irParaProntera
@@ -25,20 +25,20 @@ automacro voltarSemSeguir {
 
 macro naoSeguir {
 	if (@config(follow) == 0) goto fim
-	log [grupo] Em Prontera: follow desligado para voltar a gef_fild14
+	log [grupo] Em Prontera: follow desligado para voltar a alde_dun02
 	do conf follow 0
 	:fim
 }
 
 automacro seguirNoMapa {
-	map gef_fild14
+	map alde_dun02
 	timeout 5
 	call seguir
 }
 
 macro seguir {
 	if (@config(follow) == 1) goto fim
-	log [grupo] De volta a gef_fild14: seguindo o King Slayer
+	log [grupo] De volta a alde_dun02: seguindo o King Slayer
 	do conf follow 1
 	:fim
 }

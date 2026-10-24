@@ -11,8 +11,8 @@ servidor privado RagnaWickeD (`137.131.220.233`, login 6900 / char 6121 / map 51
 | `servers.txt` | **OK**: `kRO_Ragexe_2018_10_31a`, charBlockSize 155, `itemListUseOldType 1`, sem ofuscação. |
 | Login → char → map | **OK**: testado com a conta real (combate, coleta, inventário e `@storage` validados). |
 | Farm Kyo Sinx | `anthell02` (seção 6): cartas, Geleia Real, Mel e Orelha de Elfo. |
-| Suporte Obss (conta4) | `gef_fild14` (seção 6.3): segue o King Slayer e toca Bragi e Crepúsculo Sangrento. |
-| Suporte Ashiba | `gef_fild14` (seção 6.1): segue o King Slayer, cura, buffa (Magnificat) e dá Lex Aeterna. |
+| Suporte Obss (conta4) | `alde_dun02` (seção 6.3): segue o King Slayer e toca Bragi e Crepúsculo Sangrento. |
+| Suporte Ashiba | `alde_dun02` (seção 6.1): segue o King Slayer, cura, buffa (Magnificat) e dá Lex Aeterna. |
 | Farm Matador (conta3) | `anthell01` (seção 6.2), mesma missão do Kyo. |
 
 ## Estrutura
@@ -111,7 +111,7 @@ Validado: login → seleção de personagem (slot 1, `char 1` no config) → map
 | Mapa fixo `anthell02`, anda aleatoriamente procurando alvos | `lockMap`, `route_randomWalk 1` |
 | Ataca tudo, exceto ovos, plantas e cogumelos (por ID; o servidor manda nomes em português) | `mon_control.txt` (`all 1`) |
 | Coleta só cartas, Geleia Real (526), Mel (518), Orelha de Elfo (2286) e Caixa de Presente (644); o resto fica no chão | `pickupitems.txt` (`gen_pickupitems.pl ... 526 518 2286 644 --sem-acessorios`) |
-| White Potion com HP < 60% (Red Herb < 50% só se acabarem); senta com HP < 55% até 90% | `useSelf_item`, `sitAuto_hp_*` |
+| White Potion com HP < 60% (Red Herb < 50% só se acabarem); não senta para descansar: `@go 0` com HP < 40% no mapa ou < 80% em Prontera (depois de morrer), o servidor cura ao chegar | `useSelf_item`, `sitAuto_*` 0, `macros.txt` |
 | Abre a Caixa de Presente (Gift Box) assim que coleta (não vai para o storage) | `useSelf_item Gift Box`, `items_control.txt` |
 | Poção do Despertar sempre que o efeito acabar (só no mapa de farm, nível base ≥ 40, não com Berserk ativa) | `useSelf_item Awakening Potion` |
 | Peso ≥ 50%: `@storage` ali mesmo e guarda tudo exceto consumíveis | `storageAuto*`, `itemsMaxWeight_sellOrStore`, `items_control.txt` |
@@ -130,11 +130,11 @@ Para coletar só itens específicos (ex.: cartas, acessórios e Opala), gere o `
 
 ## 6.1 Suporte — Ashiba (`bots/ashiba/control/`, conta 2)
 
-Priest nível 71. Acompanha o King Slayer (jogado pelo dono) em `gef_fild14` junto com o Obss, só cura e buffa; nunca ataca.
+Priest nível 71. Acompanha o King Slayer (jogado pelo dono) em `alde_dun02` junto com o Obss, só cura e buffa; nunca ataca.
 
 | Comportamento | Onde |
 |---|---|
-| Segue o King Slayer (mesma party); mapa fixo `gef_fild14` para voltar depois de morrer | `follow 1`, `followTarget King Slayer`, `lockMap`, `route_randomWalk 0` |
+| Segue o King Slayer (mesma party); mapa fixo `alde_dun02` para voltar depois de morrer | `follow 1`, `followTarget King Slayer`, `lockMap`, `route_randomWalk 0` |
 | Não ataca nada, mesmo se for atacada | `attackAuto 0`, `mon_control.txt` (`all -1`) |
 | Mantém Agilidade, Bênção e Magnificat em si mesma (Magnificat vale para a party toda) | `useSelf_skill` |
 | Mantém Agilidade e Bênção em todos da party | `partySkill Increase Agility/Blessing` (`target_whenStatusInactive`) |
@@ -142,7 +142,7 @@ Priest nível 71. Acompanha o King Slayer (jogado pelo dono) em `gef_fild14` jun
 | Lex Aeterna no monstro que o King Slayer está batendo (a cada 3 s, só com SP > 30%) | `monsterSkill Lex Aeterna` + plugin `attackedBy` (`target_attackedBy King Slayer`) |
 | Senta para recuperar SP com SP < 25% até 70% | `sitAuto_sp_*` |
 | HP < 30% ou SP < 10% no mapa: `@go 0` e volta pela Teletransportadora | `macros.txt` |
-| Ao morrer volta pela Teletransportadora (opção "Último destino"); em Prontera desliga o follow para o lockMap agir e religa em gef_fild14 | `portals_ragnawicked.txt`, `macros.txt` |
+| Ao morrer volta pela Teletransportadora (opção "Último destino"); em Prontera desliga o follow para o lockMap agir e religa em alde_dun02 | `portals_ragnawicked.txt`, `macros.txt` |
 
 ## 6.2 Farm — Matador (`bots/conta3/control/`, conta 3)
 
@@ -165,11 +165,11 @@ faça a primeira viagem para o mapa novo manualmente.
 
 ## 6.3 Suporte — Obss (Bardo, `bots/conta4/control/`, conta 4)
 
-Slot 0 (`char 0`). Segue o King Slayer em `gef_fild14` junto com a Ashiba e só toca músicas; nunca ataca.
+Slot 0 (`char 0`). Segue o King Slayer em `alde_dun02` junto com a Ashiba e só toca músicas; nunca ataca.
 
 | Comportamento | Onde |
 |---|---|
-| Segue o King Slayer de perto (1 a 3 células); mapa fixo `gef_fild14` para voltar depois de morrer | `follow 1`, `followTarget King Slayer`, `followDistance*`, `lockMap` |
+| Segue o King Slayer de perto (1 a 3 células); mapa fixo `alde_dun02` para voltar depois de morrer | `follow 1`, `followTarget King Slayer`, `followDistance*`, `lockMap` |
 | Não ataca nem coleta | `attackAuto 0`, `mon_control.txt` (`all -1`), `itemsTakeAuto 0` |
 | Toca a música que falta no King Slayer (Poema de Bragi, Crepúsculo Sangrento): equipa o Violino, toca e desequipa; o efeito fica 20 s depois que a música para, então cada uma é renovada a cada ~21 s | plugin `bardSongs` (`bardSongs_*` no config) |
 | Música cujo status o servidor não informa no King Slayer: repete a cada 16 s. Só toca com SP ≥ 80 e o alvo a até 3 células | `bardSongs_interval`, `bardSongs_minSp`, `bardSongs_maxDist` |
