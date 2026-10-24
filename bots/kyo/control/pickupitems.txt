@@ -1,4 +1,549 @@
-# Coleta tudo do chao. Para voltar a coletar so cartas/acessorios/opala, regenere com
-# tools/gen_pickupitems.pl (instrucoes no cabecalho do script).
-# Formato: <nome ou id> <flag>  (0 = ignora, 1 = pega, 2 = pega o mais rapido possivel)
-all 2
+# Gerado por tools/gen_pickupitems.pl - nao edite a mao, rode o script de novo.
+# Formato: <id> <flag>  (0 = ignora, 2 = pega o mais rapido possivel)
+all 0
+
+# --- Extras (4) ---
+518 2 # Honey
+526 2 # Royal Jelly
+644 2 # Gift Box
+2286 2 # Elven Ears
+
+# --- Cartas (538) ---
+4001 2 # Poring Card
+4002 2 # Fabre Card
+4003 2 # Pupa Card
+4004 2 # Drops Card
+4005 2 # Santa Poring Card
+4006 2 # Lunatic Card
+4007 2 # Peco Peco Egg Card
+4008 2 # Picky Card
+4009 2 # Chonchon Card
+4010 2 # Willow Card
+4011 2 # Picky Egg Card
+4012 2 # Thief Bug Egg Card
+4013 2 # Andre Egg Card
+4014 2 # Roda Frog Card
+4015 2 # Condor Card
+4016 2 # Thief Bug Card
+4017 2 # Savage Babe Card
+4018 2 # Andre Larva Card
+4019 2 # Hornet Card
+4020 2 # Familiar Card
+4021 2 # Rocker Card
+4022 2 # Spore Card
+4023 2 # Baby Desert Wolf Card
+4024 2 # Plankton Card
+4025 2 # Skeleton Card
+4026 2 # Female Thief Bug Card
+4027 2 # Kukre Card
+4028 2 # Tarou Card
+4029 2 # Wolf Card
+4030 2 # Mandragora Card
+4031 2 # Peco Peco Card
+4032 2 # Ambernite Card
+4033 2 # Poporing Card
+4034 2 # Wormtail Card
+4035 2 # Hydra Card
+4036 2 # Muka Card
+4037 2 # Snake Card
+4038 2 # Zombie Card
+4039 2 # Stainer Card
+4040 2 # Creamy Card
+4041 2 # Coco Card
+4042 2 # Steel Chonchon Card
+4043 2 # Andre Card
+4044 2 # Smokie Card
+4045 2 # Horn Card
+4046 2 # Martin Card
+4047 2 # Ghostring Card
+4048 2 # Poison Spore Card
+4049 2 # Vadon Card
+4050 2 # Male Thief Bug Card
+4051 2 # Yoyo Card
+4052 2 # Elder Willow Card
+4053 2 # Vitata Card
+4054 2 # Angeling Card
+4055 2 # Marina Card
+4056 2 # Dustiness Card
+4057 2 # Metaller Card
+4058 2 # Thara Frog Card
+4059 2 # Soldier Andre Card
+4060 2 # Goblin Card
+4061 2 # Cornutus Card
+4062 2 # Anacondaq Card
+4063 2 # Caramel Card
+4064 2 # Zerom Card
+4065 2 # Kaho Card
+4066 2 # Orc Warrior Card
+4067 2 # Megalodon Card
+4068 2 # Scorpion Card
+4069 2 # Drainliar Card
+4070 2 # Eggyra Card
+4071 2 # Orc Zombie Card
+4072 2 # Golem Card
+4073 2 # Pirate Skeleton Card
+4074 2 # Bigfoot Card
+4075 2 # Argos Card
+4076 2 # Magnolia Card
+4077 2 # Phen Card
+4078 2 # Savage Card
+4079 2 # Mantis Card
+4080 2 # Flora Card
+4081 2 # Hode Card
+4082 2 # Desert Wolf Card
+4083 2 # Rafflesia Card
+4084 2 # Marine Sphere Card
+4085 2 # Orc Skeleton Card
+4086 2 # Soldier Skeleton Card
+4087 2 # Giearth Card
+4088 2 # Frilldora Card
+4089 2 # Swordfish Card
+4090 2 # Munak Card
+4091 2 # Kobold Card
+4092 2 # Skeleton Worker Card
+4093 2 # Obeaune Card
+4094 2 # Archer Skeleton Card
+4095 2 # Marse Card
+4096 2 # Zenorc Card
+4097 2 # Matyr Card
+4098 2 # Dokebi Card
+4099 2 # Pasana Card
+4100 2 # Sohee Card
+4101 2 # Sandman Card
+4102 2 # Whisper Card
+4103 2 # Horong Card
+4104 2 # Requiem Card
+4105 2 # Marc Card
+4106 2 # Mummy Card
+4107 2 # Verit Card
+4108 2 # Myst Card
+4109 2 # Jakk Card
+4110 2 # Ghoul Card
+4111 2 # Strouf Card
+4112 2 # Marduk Card
+4113 2 # Marionette Card
+4114 2 # Argiope Card
+4115 2 # Hunter Fly Card
+4116 2 # Isis Card
+4117 2 # Sidewinder Card
+4118 2 # Earth Petite Card
+4119 2 # Bathory Card
+4120 2 # Sky Petite Card
+4121 2 # Phreeoni Card
+4122 2 # Deviruchi Card
+4123 2 # Eddga Card
+4124 2 # Medusa Card
+4125 2 # Deviace Card
+4126 2 # Minorous Card
+4127 2 # Nightmare Card
+4128 2 # Golden Thief Bug Card
+4129 2 # Bapho Jr. Card
+4130 2 # Scorpion King Card
+4131 2 # Moonlight Flower Card
+4132 2 # Mistress Card
+4133 2 # Raydric Card
+4134 2 # Dracula Card
+4135 2 # Orc Lord Card
+4136 2 # Khalitzburg Card
+4137 2 # Drake Card
+4138 2 # Anubis Card
+4139 2 # Joker Card
+4140 2 # Abysmal Knight Card
+4141 2 # Evil Druid Card
+4142 2 # Doppelganger Card
+4143 2 # Orc Hero Card
+4144 2 # Osiris Card
+4145 2 # Berzebub Card
+4146 2 # Maya Card
+4147 2 # Baphomet Card
+4148 2 # Pharaoh Card
+4149 2 # Gargoyle Card
+4150 2 # Goat Card
+4151 2 # Gajomart Card
+4152 2 # Galapago Card
+4153 2 # Crab Card
+4154 2 # Dumpling Child Card
+4155 2 # Goblin Leader Card
+4156 2 # Goblin Steamrider Card
+4157 2 # Goblin Archer Card
+4158 2 # Sky Deleter Card
+4159 2 # Nine Tail Card
+4160 2 # Firelock Soldier Card
+4161 2 # Grand Peco Card
+4162 2 # Grizzly Card
+4163 2 # Gryphon Card
+4164 2 # Gullinbursti Card
+4165 2 # Gig Card
+4166 2 # Nightmare Terror Card
+4167 2 # Nereid Card
+4168 2 # Dark Lord Card
+4169 2 # Dark Illusion Card
+4170 2 # Dark Frame Card
+4171 2 # Dark Priest Card
+4172 2 # The Paper Card
+4173 2 # Demon Pungus Card
+4174 2 # Deviling Card
+4175 2 # Poisonous Toad Card
+4176 2 # Dullahan Card
+4177 2 # Dryad Card
+4178 2 # Dragon Tail Card
+4179 2 # Dragon Fly Card
+4180 2 # Driller Card
+4181 2 # Disguise Card
+4182 2 # Diabolic Card
+4183 2 # Vagabond Wolf Card
+4184 2 # Lava Golem Card
+4185 2 # Rideword Card
+4186 2 # Raggler Card
+4187 2 # Raydric Archer Card
+4188 2 # Leib Olmai Card
+4189 2 # Wraith Dead Card
+4190 2 # Wraith Card
+4191 2 # Loli Ruri Card
+4192 2 # Rotar Zairo Card
+4193 2 # Lude Card
+4194 2 # Rybio Card
+4195 2 # Leaf Cat Card
+4196 2 # Marin Card
+4197 2 # Mastering Card
+4198 2 # Maya Purple Card
+4199 2 # Merman Card
+4200 2 # Megalith Card
+4201 2 # Majoruros Card
+4202 2 # Mao Guai Card
+4203 2 # Mutant Dragonoid Card
+4204 2 # Mini Demon Card
+4205 2 # Mimic Card
+4206 2 # Myst Case Card
+4207 2 # Mysteltainn Card
+4208 2 # Miyabi Doll Card
+4209 2 # Violy Card
+4210 2 # Wanderer Card
+4211 2 # Vocal Card
+4212 2 # Bongun Card
+4213 2 # Brilight Card
+4214 2 # Bloody Murderer Card
+4215 2 # Blazer Card
+4216 2 # Sasquatch Card
+4217 2 # Enchanted Peach Tree Card
+4218 2 # Succubus Card
+4219 2 # Sage Worm Card
+4220 2 # Solider Card
+4221 2 # Skeleton General Card
+4222 2 # Skeleton Prisoner Card
+4223 2 # Stalactic Golem Card
+4224 2 # Stem Worm Card
+4225 2 # Stone Shooter Card
+4226 2 # Sting Card
+4227 2 # Spring Rabbit Card
+4228 2 # Sleeper Card
+4229 2 # Tower Keeper Card
+4230 2 # Shinobi Card
+4231 2 # Mi Gao Card
+4232 2 # Hermit Plant Card
+4233 2 # Baby Leopard Card
+4234 2 # Anolian Card
+4235 2 # Christmas Cookie Card
+4236 2 # Amon Ra Card
+4237 2 # Owl Duke Card
+4238 2 # Owl Baron Card
+4239 2 # Iron Fist Card
+4240 2 # Arclouze Card
+4241 2 # Arc Angeling Card
+4242 2 # Apocalipse Card
+4243 2 # Antonio Card
+4244 2 # Alarm Card
+4245 2 # Am Mut Card
+4246 2 # Assaulter Card
+4247 2 # Aster Card
+4248 2 # Ancient Mummy Card
+4249 2 # Ancient Worm Card
+4250 2 # Executioner Card
+4251 2 # Elder Card
+4252 2 # Alligator Card
+4253 2 # Alice Card
+4254 2 # Ogretooth Card
+4255 2 # Orc Lady Card
+4256 2 # Orc Archer Card
+4257 2 # Wild Rose Card
+4258 2 # Evil Nymph Card
+4259 2 # Wooden Golem Card
+4260 2 # Wootan Shooter Card
+4261 2 # Wootan Fighter Card
+4262 2 # Cloud Hermit Card
+4263 2 # Samurai Spector Card
+4264 2 # Wind Ghost Card
+4265 2 # Jing Guai Card
+4266 2 # Eclipse Card
+4267 2 # Explosion Card
+4268 2 # Injustice Card
+4269 2 # Incubus Card
+4270 2 # Giant Spider Card
+4271 2 # Giant Hornet Card
+4272 2 # Zhu Po Long Card
+4273 2 # Shell Fish Card
+4274 2 # Zombie Master Card
+4275 2 # Zombie Prisoner Card
+4276 2 # Lord of The Dead Card
+4277 2 # Zealotus Card
+4278 2 # Gibbet Card
+4279 2 # Earth Deleter Card
+4280 2 # Geographer Card
+4281 2 # Zipper Bear Card
+4282 2 # Tengu Card
+4283 2 # Greatest General Card
+4284 2 # Chepet Card
+4285 2 # Choco Card
+4286 2 # Karakasa Card
+4287 2 # Kapha Card
+4288 2 # Carat Card
+4289 2 # Caterpillar Card
+4290 2 # Cat O' Nine Tails Card
+4291 2 # Kobold Leader Card
+4292 2 # Kobold Archer Card
+4293 2 # Cookie Card
+4294 2 # Quve Card
+4295 2 # Kraben Card
+4296 2 # Cramp Card
+4297 2 # Cruiser Card
+4298 2 # Creamy Fear Card
+4299 2 # Clock Card
+4300 2 # Chimera Card
+4301 2 # Killer Mantis Card
+4302 2 # Tao Gunka Card
+4303 2 # Giant Whisper Card
+4304 2 # Tamruan Card
+4305 2 # Turtle General Card
+4306 2 # Toad Card
+4307 2 # Beetle King Card
+4308 2 # Tri Joint Card
+4309 2 # Parasite Card
+4310 2 # Panzer Goblin Card
+4311 2 # Permeter Card
+4312 2 # Seal Card
+4313 2 # Punk Card
+4314 2 # Penomena Card
+4315 2 # Pest Card
+4316 2 # False Angel Card
+4317 2 # Mobster Card
+4318 2 # Stormy Knight Card
+4319 2 # Freezer Card
+4320 2 # Bloody Knight Card
+4321 2 # Hylozoist Card
+4322 2 # High Orc Card
+4323 2 # Hatii Babe Card
+4324 2 # Hatii Card
+4325 2 # Harpy Card
+4326 2 # Sea-Otter Card
+4327 2 # Bloody Butterfly Card
+4328 2 # Yao Jun Card
+4329 2 # Phendark Card
+4330 2 # Evil Snake Lord Card
+4331 2 # Heater Card
+4332 2 # Waste Stove Card
+4333 2 # Venomous Card
+4334 2 # Noxious Card
+4335 2 # Pitman Card
+4336 2 # Ungoliant Card
+4337 2 # Porcellio Card
+4338 2 # Obsidian Card
+4339 2 # Mineral Card
+4340 2 # Teddy Bear Card
+4341 2 # Metaling Card
+4342 2 # RSX-0806 Card
+4343 2 # Holden Card
+4344 2 # Anopheles Card
+4345 2 # Hill Wind Card
+4346 2 # Egnigem Cenia Card
+4347 2 # Armeyer Dinze Card
+4348 2 # Wickebine Tres Card
+4349 2 # Errende Ebecee Card
+4350 2 # Laurell Weinder Card
+4351 2 # Kavach Icarus Card
+4352 2 # General Egnigem Cenia Card
+4353 2 # Remover Card
+4354 2 # Gemini-S58 Card
+4355 2 # Gremlin Card
+4356 2 # Beholder Card
+4357 2 # Lord Knight Card
+4358 2 # Seyren Windsor Card
+4359 2 # Assassin Cross Card
+4360 2 # Eremes Guile Card
+4361 2 # MasterSmith Card
+4362 2 # Howard Alt-Eisen Card
+4363 2 # High Priest Card
+4364 2 # Margaretha Sorin Card
+4365 2 # High Wizard Card
+4366 2 # Kathryne Keyron Card
+4367 2 # Sniper Card
+4368 2 # Cecil Damon Card
+4369 2 # Venatu Card
+4370 2 # Dimik Card
+4371 2 # Archdam Card
+4372 2 # White Lady Card
+4373 2 # Green Maiden Card
+4374 2 # Vesper Card
+4375 2 # Orc Baby Card
+4376 2 # Lady Tanee Card
+4377 2 # Grove Card
+4378 2 # Gold Acidus Card
+4379 2 # Blue Acidus Card
+4380 2 # Red Ferus Card
+4381 2 # Green Ferus Card
+4382 2 # Yellow Novus Card
+4383 2 # Red Novus Card
+4384 2 # Hydrolancer Card
+4385 2 # Dragon Egg Card
+4386 2 # Detardeurus Card
+4387 2 # Ancient Mimic Card
+4388 2 # Death Word Card
+4389 2 # Plasma Card
+4390 2 # Breeze Card
+4391 2 # Baroness of Retribution Card
+4392 2 # Dame of Sentinel Card
+4393 2 # Mistress of Shelter Card
+4394 2 # Lady Solace Card
+4395 2 # Maero of Thanatos Card
+4396 2 # Odium of Thanatos Card
+4397 2 # Despero of Thanatos Card
+4398 2 # Dolor of Thanatos Card
+4399 2 # Memory of Thanatos Card
+4400 2 # Aliza Card
+4401 2 # Alicel Card
+4402 2 # Aliot Card
+4403 2 # Kiel-D-01 Card
+4404 2 # Skogul Card
+4405 2 # Frus Card
+4406 2 # Skeggiold Card
+4407 2 # Randgris Card
+4408 2 # Gloom Under Night Card
+4409 2 # Agav Card
+4410 2 # Echio Card
+4411 2 # Vanberk Card
+4412 2 # Isilla Card
+4413 2 # Hodremlin Card
+4414 2 # Seeker Card
+4415 2 # Snowier Card
+4416 2 # Siroma Card
+4417 2 # Ice Titan Card
+4418 2 # Gazeti Card
+4419 2 # Ktullanux Card
+4420 2 # Muscipular Card
+4421 2 # Drosera Card
+4422 2 # Roween Card
+4423 2 # Galion Card
+4424 2 # Stapo Card
+4425 2 # Atroce Card
+4426 2 # Byorgue Card
+4427 2 # Sword Guardian Card
+4428 2 # Bow Guardian Card
+4429 2 # Salamander Card
+4430 2 # Ifrit Card
+4431 2 # Kasa Card
+4432 2 # Magmaring Card
+4433 2 # Imp Card
+4434 2 # Knocker Card
+4435 2 # Zombie Slaughter Card
+4436 2 # Ragged Zombie Card
+4437 2 # Hell Poodle Card
+4438 2 # Banshee Card
+4439 2 # Flame Skull Card
+4440 2 # Necromancer Card
+4441 2 # Fallen Bishop Hibram Card
+4442 2 # Tatacho Card
+4443 2 # Aqua Elemental Card
+4444 2 # Draco Card
+4445 2 # Luciola Vespa Card
+4447 2 # Centipede Card
+4448 2 # Cornus Card
+4449 2 # Dark Shadow Card
+4450 2 # Banshee Master Card
+4451 2 # Entweihen Crothen Card
+4452 2 # Centipede Larva Card
+4453 2 # Hillsrion Card
+4700 2 # STR+1
+4701 2 # STR+2
+4702 2 # STR+3
+4703 2 # STR+4
+4704 2 # STR+5
+4705 2 # STR+6
+4706 2 # STR+7
+4707 2 # STR+8
+4708 2 # STR+9
+4709 2 # STR+10
+4710 2 # INT+1
+4711 2 # INT+2
+4712 2 # INT+3
+4713 2 # INT+4
+4714 2 # INT+5
+4715 2 # INT+6
+4716 2 # INT+7
+4717 2 # INT+8
+4718 2 # INT+9
+4719 2 # INT+10
+4720 2 # DEX+1
+4721 2 # DEX+2
+4722 2 # DEX+3
+4723 2 # DEX+4
+4724 2 # DEX+5
+4725 2 # DEX+6
+4726 2 # DEX+7
+4727 2 # DEX+8
+4728 2 # DEX+9
+4729 2 # DEX+10
+4730 2 # AGI+1
+4731 2 # AGI+2
+4732 2 # AGI+3
+4733 2 # AGI+4
+4734 2 # AGI+5
+4735 2 # AGI+6
+4736 2 # AGI+7
+4737 2 # AGI+8
+4738 2 # AGI+9
+4739 2 # AGI+10
+4740 2 # VIT+1
+4741 2 # VIT+2
+4742 2 # VIT+3
+4743 2 # VIT+4
+4744 2 # VIT+5
+4745 2 # VIT+6
+4746 2 # VIT+7
+4747 2 # VIT+8
+4748 2 # VIT+9
+4749 2 # VIT+10
+4750 2 # LUK+1
+4751 2 # LUK+2
+4752 2 # LUK+3
+4753 2 # LUK+4
+4754 2 # LUK+5
+4755 2 # LUK+6
+4756 2 # LUK+7
+4757 2 # LUK+8
+4758 2 # LUK+9
+4759 2 # LUK+10
+4760 2 # MATK+1%
+4761 2 # MATK+2%
+4762 2 # FLEE+6
+4763 2 # FLEE+12
+4764 2 # CRI+5
+4765 2 # CRI+7
+4766 2 # ATK+2%
+4767 2 # ATK+3%
+4768 2 # STR+1
+4769 2 # STR+2
+4770 2 # STR+3
+4771 2 # INT+1
+4772 2 # INT+2
+4773 2 # INT+3
+4774 2 # VIT+1
+4775 2 # VIT+2
+4776 2 # VIT+3
+4777 2 # AGI+1
+4778 2 # AGI+2
+4779 2 # AGI+3
+4780 2 # DEX+1
+4781 2 # DEX+2
+4782 2 # DEX+3
+4783 2 # LUK+1
+4784 2 # LUK+2
+4785 2 # LUK+3

@@ -214,7 +214,7 @@ cartMaxWeight 7900
 itemsTakeGreed 0
 itemsCheckWeight 1
 
-lockMap gef_fild14
+lockMap anthell01
 lockMap_x
 lockMap_y
 lockMap_randX
@@ -746,6 +746,13 @@ useSelf_item Novice Potion {
 	inInventory White Potion < 1
 	dcOnEmpty 0
 	timeout 0.5
+}
+
+# Abre a Caixa de Presente (Gift Box) assim que entra no inventario.
+useSelf_item Gift Box {
+	inInventory Gift Box > 0
+	dcOnEmpty 0
+	timeout 1
 }
 
 # Pocao do Despertar (velocidade de ataque): reaplica quando o efeito acaba,

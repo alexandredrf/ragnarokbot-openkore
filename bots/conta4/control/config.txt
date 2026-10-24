@@ -67,10 +67,10 @@ alias_heal sp 28
 allowedMaps
 allowedMaps_reaction 1
 
-attackAuto 2
+attackAuto 0
 attackAuto_routeToLock 1
 attackAuto_outOfLock 1
-attackAuto_party 1
+attackAuto_party 0
 attackAuto_onlyWhenSafe 0
 attackAuto_followTarget 1
 attackAuto_notInTown 1
@@ -190,20 +190,20 @@ dcOnServerClose 0
 dcOnJobLevel
 dcOnLevel
 
-follow 0
-followTarget
+follow 1
+followTarget King Slayer
 followEmotion 1
 followEmotion_distance 4
 followFaceDirection 0
-followDistanceMax 6
-followDistanceMin 3
+followDistanceMax 3
+followDistanceMin 1
 followLostStep 12
 followSitAuto 0
 followBot 0
 
-itemsTakeAuto 2
+itemsTakeAuto 0
 itemsTakeAuto_party 0
-itemsGatherAuto 2
+itemsGatherAuto 0
 itemsGatherAuto_notInTown 0
 itemsGatherAutoMinPlayerDistance 6
 itemsGatherAutoMinPortalDistance 5
@@ -214,7 +214,7 @@ cartMaxWeight 7900
 itemsTakeGreed 0
 itemsCheckWeight 1
 
-lockMap xmas_dun02
+lockMap pay_dun00
 lockMap_x
 lockMap_y
 lockMap_randX
@@ -223,7 +223,7 @@ lockMap_randY
 route_escape_reachedNoPortal 1
 route_escape_randomWalk 1
 route_escape_shout
-route_randomWalk 1
+route_randomWalk 0
 route_randomWalk_inLockOnly 0
 route_randomWalk_inTown 0
 route_randomWalk_maxRouteTime 75
@@ -799,9 +799,10 @@ minStorageZeny 50
 npcTimeResponse
 npcWrongStepsMethod 0
 
-getAuto {
-	minAmount
-	maxAmount
+# Pega o Violino do storage (via @storage) se ele nao estiver no inventario.
+getAuto Violin {
+	minAmount 1
+	maxAmount 1
 	batchSize
 	passive
 	dcOnEmpty 0
@@ -1014,7 +1015,17 @@ avoidObstaclesDefaultPortals {
 
 
 ######## Plugin fleeMonster (plugins/fleeMonster) ########
-# Foge andando, sem asa, do Filhote de Hatii (Garm Baby).
-fleeMonster_ids 1515
+# Desligado no suporte (fleeMonster_ids vazio).
+fleeMonster_ids
 fleeMonster_dist 10
 fleeMonster_runDist 15
+
+######## Plugin bardSongs (plugins/bardSongs) ########
+# Suporte: equipa o Violino, toca, desequipa; uma musica de cada vez, quando faltar
+# algum efeito no personagem seguido. bardSongs_target vazio desliga.
+bardSongs_target King Slayer
+bardSongs_instrument Violin
+bardSongs_songs Poem of Bragi, Assassin Cross of Sunset
+bardSongs_maxDist 3
+bardSongs_minSp 80
+bardSongs_interval 16

@@ -58,14 +58,8 @@
 # <attack> = 1
 
 
-# Foco do farm em xmas_dun02: so ataca Presente e Soldadinho de Chumbo.
-# Os demais (0) so sao atacados se atacarem primeiro.
-all 0 0 0
-1248 1 0 0 # Cruiser (Soldadinho de Chumbo)
-1249 1 0 0 # Myst Case (Presente)
-
-# Filhote de Hatii (Garm Baby): forte demais, nunca ataca. Foge andando (plugin fleeMonster, config.txt).
-1515 -1 0 0 # Garm Baby (Filhote de Hatii)
+# Suporte: nao ataca nada, mesmo se for atacado (-1).
+all -1 0 0
 
 ##### Eggs #####
 # Por ID: o servidor manda os nomes em portugues, entao nomes em ingles nao batem.

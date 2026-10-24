@@ -25,3 +25,6 @@ Novice Potion 0 0 0
 Arrow 0 0 0
 Fire Arrow 0 0 0
 Silver Arrow 0 0 0
+
+# Caixa de Presente: e aberta ao ser coletada (useSelf_item Gift Box), nao vai para o storage.
+Gift Box 0 0 0

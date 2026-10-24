@@ -21,3 +21,6 @@ Awakening Potion 0 0 0
 Berserk Potion 0 0 0
 Fly Wing 0 0 0
 Butterfly Wing 0 0 0
+
+# Caixa de Presente: e aberta ao ser coletada (useSelf_item Gift Box), nao vai para o storage.
+Gift Box 0 0 0

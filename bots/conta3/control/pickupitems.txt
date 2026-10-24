@@ -2,9 +2,11 @@
 # Formato: <id> <flag>  (0 = ignora, 2 = pega o mais rapido possivel)
 all 0
 
-# --- Extras (2) ---
-2285 2 # Apple of Archer
-5265 2 # Apple of Archer
+# --- Extras (4) ---
+518 2 # Honey
+526 2 # Royal Jelly
+644 2 # Gift Box
+2286 2 # Elven Ears
 
 # --- Cartas (538) ---
 4001 2 # Poring Card

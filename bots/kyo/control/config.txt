@@ -214,7 +214,7 @@ cartMaxWeight 7900
 itemsTakeGreed 0
 itemsCheckWeight 1
 
-lockMap xmas_dun02
+lockMap anthell02
 lockMap_x
 lockMap_y
 lockMap_randX
@@ -739,6 +739,13 @@ useSelf_item Red Herb {
 	timeout 1
 }
 
+# Abre a Caixa de Presente (Gift Box) assim que entra no inventario.
+useSelf_item Gift Box {
+	inInventory Gift Box > 0
+	dcOnEmpty 0
+	timeout 1
+}
+
 # Pocao do Despertar (velocidade de ataque): reaplica quando o efeito acaba,
 # so no mapa de farm. Nao usa com Berserk ativa (efeito maior, nao acumula).
 # Exige nivel base 40.
@@ -1014,7 +1021,7 @@ avoidObstaclesDefaultPortals {
 
 
 ######## Plugin fleeMonster (plugins/fleeMonster) ########
-# Foge andando, sem asa, do Filhote de Hatii (Garm Baby).
-fleeMonster_ids 1515
+# Desligado em anthell02 (fleeMonster_ids vazio).
+fleeMonster_ids
 fleeMonster_dist 10
 fleeMonster_runDist 15

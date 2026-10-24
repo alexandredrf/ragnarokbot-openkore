@@ -17,7 +17,7 @@ macro ligarAutoloot {
 # O servidor cura e buffa ao chegar na cidade; o lockMap traz de volta pela
 # Teletransportadora (prontera 163 190, ver portals_ragnawicked.txt).
 automacro fugirVidaBaixa {
-	map gef_fild14
+	map pay_dun00
 	hp < 30%
 	timeout 20
 	call irParaProntera
@@ -25,7 +25,7 @@ automacro fugirVidaBaixa {
 
 # Sem SP nao ha Cura (nem para atacar, nem para se curar): mesma saida.
 automacro fugirSemSP {
-	map gef_fild14
+	map pay_dun00
 	sp < 10%
 	timeout 20
 	call irParaProntera

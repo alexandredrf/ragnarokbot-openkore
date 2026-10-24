@@ -58,7 +58,7 @@
 # <attack> = 1
 
 
-# Suporte do Matador em gef_fild14: nao ataca nada, mesmo se for atacada (-1).
+# Suporte do King Slayer em pay_dun00: nao ataca nada, mesmo se for atacada (-1).
 all -1 0 0
 
 ##### Eggs #####

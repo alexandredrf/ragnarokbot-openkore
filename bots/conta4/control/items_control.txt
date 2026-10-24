@@ -21,3 +21,6 @@ Awakening Potion 0 0 0
 Berserk Potion 0 0 0
 Fly Wing 0 0 0
 Butterfly Wing 0 0 0
+
+# Violino das musicas (plugin bardSongs): nunca vai para o storage.
+Violin 0 0 0

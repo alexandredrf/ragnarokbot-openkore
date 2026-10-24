@@ -5,7 +5,7 @@
 # volta pela Teletransportadora (prontera 163 190, ver portals_ragnawicked.txt).
 # timeout evita repetir o comando caso o @go demore ou falhe.
 automacro rebuffEmProntera {
-	map xmas_dun02
+	map anthell02
 	status not Blessing
 	status not Increase Agility
 	timeout 30

@@ -191,7 +191,7 @@ dcOnJobLevel
 dcOnLevel
 
 follow 1
-followTarget Matador
+followTarget King Slayer
 followEmotion 1
 followEmotion_distance 4
 followFaceDirection 0
@@ -214,7 +214,7 @@ cartMaxWeight 7900
 itemsTakeGreed 0
 itemsCheckWeight 1
 
-lockMap gef_fild14
+lockMap pay_dun00
 lockMap_x
 lockMap_y
 lockMap_randX
@@ -718,7 +718,7 @@ partySkill Blessing {
 	target_timeout 3
 }
 
-# Lex Aeterna (dano dobrado no proximo golpe) no monstro que o Matador esta batendo.
+# Lex Aeterna (dano dobrado no proximo golpe) no monstro que o King Slayer esta batendo.
 # target_attackedBy vem do plugin attackedBy (plugins/attackedBy). O timeout evita
 # gastar SP reaplicando antes do golpe consumir o efeito.
 monsterSkill Lex Aeterna {
@@ -727,7 +727,7 @@ monsterSkill Lex Aeterna {
 	minCastTime 0
 	isSelfSkill 0
 	sp > 30%
-	target_attackedBy Matador
+	target_attackedBy King Slayer
 	target_dist 0..9
 	target_timeout 3
 }

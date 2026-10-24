@@ -56,5 +56,6 @@ services:
     volumes:
       - ./servers.txt:/opt/openkore/tables/servers.txt:ro
       - ./plugins/fleeMonster:/opt/openkore/plugins/fleeMonster:ro
+      - ./plugins/bardSongs:/opt/openkore/plugins/bardSongs:ro
       - ./bots/conta4/control:/data/control
       - ./bots/conta4/logs:/data/logs

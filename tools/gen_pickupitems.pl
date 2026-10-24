@@ -5,6 +5,7 @@
 # Uso:
 #   curl -sLO https://raw.githubusercontent.com/rathena/rathena/master/db/pre-re/item_db_equip.yml
 #   curl -sLO https://raw.githubusercontent.com/rathena/rathena/master/db/pre-re/item_db_etc.yml
+#   curl -sLO https://raw.githubusercontent.com/rathena/rathena/master/db/pre-re/item_db_usable.yml   (nomes de consumiveis)
 #   perl tools/gen_pickupitems.pl item_db_equip.yml item_db_etc.yml 727 > bots/<nome>/control/pickupitems.txt
 #
 # Argumentos numericos = IDs extras para coletar (ex.: 727 = Opala).

@@ -10,10 +10,10 @@ servidor privado RagnaWickeD (`137.131.220.233`, login 6900 / char 6121 / map 51
 | Imagem Docker | **OK**: build testado (Docker 29.8, OpenKore `e0b04ee` fixado, XSTools via `scons`, portais pré-compilados). |
 | `servers.txt` | **OK**: `kRO_Ragexe_2018_10_31a`, charBlockSize 155, `itemListUseOldType 1`, sem ofuscação. |
 | Login → char → map | **OK**: testado com a conta real (combate, coleta, inventário e `@storage` validados). |
-| Farm Kyo Sinx | `xmas_dun02` (seção 6). |
-| Farm Obss (conta4) | `xmas_dun02`, mesma configuração do Kyo (seção 6), testado. |
-| Suporte Ashiba | `gef_fild14` (seção 6.1): segue o Matador, cura e buffa a party. |
-| Farm Matador (conta3) | `gef_fild14` (seção 6.2), com a Ashiba de suporte; coleta só cartas. |
+| Farm Kyo Sinx | `anthell02` (seção 6): cartas, Geleia Real, Mel e Orelha de Elfo. |
+| Suporte Obss (conta4) | `pay_dun00` (seção 6.3): segue o King Slayer e toca Bragi e Crepúsculo Sangrento. |
+| Suporte Ashiba | `pay_dun00` (seção 6.1): segue o King Slayer, cura, buffa e dá Lex Aeterna. |
+| Farm Matador (conta3) | `anthell01` (seção 6.2), mesma missão do Kyo. |
 
 ## Estrutura
 
@@ -26,6 +26,7 @@ account.env.example   modelo do arquivo de credenciais
 portals_ragnawicked.txt  NPCs de teleporte do servidor (entram na tabela de rotas no build)
 plugins/fleeMonster/  plugin próprio: foge andando de monstros perigosos (montado no container)
 plugins/attackedBy/   plugin próprio: condição target_attackedBy (monstro que um jogador está batendo)
+plugins/bardSongs/    plugin próprio: ciclo de músicas do Bardo (equipa, toca, desequipa)
 tools/                gerador do pickupitems.txt
 bots/<nome>/control/  config.txt, mon_control.txt, items_control.txt... (versionado, SEM senha)
 bots/<nome>/account.env  credenciais (ignorado pelo git, opcional)
@@ -107,60 +108,74 @@ Validado: login → seleção de personagem (slot 1, `char 1` no config) → map
 
 | Comportamento | Onde |
 |---|---|
-| Mapa fixo `xmas_dun02`, anda aleatoriamente procurando alvos | `lockMap`, `route_randomWalk 1` |
-| Ataca só Presente (Myst Case 1249) e Soldadinho de Chumbo (Cruiser 1248); os demais só se atacarem primeiro | `mon_control.txt` (`all 0`) |
-| Coleta tudo do chão | `pickupitems.txt` (`all 2`) |
-| Ignora plantas, cogumelos e ovos (por ID; o servidor manda nomes em português) | `mon_control.txt` |
+| Mapa fixo `anthell02`, anda aleatoriamente procurando alvos | `lockMap`, `route_randomWalk 1` |
+| Ataca tudo, exceto ovos, plantas e cogumelos (por ID; o servidor manda nomes em português) | `mon_control.txt` (`all 1`) |
+| Coleta só cartas, Geleia Real (526), Mel (518), Orelha de Elfo (2286) e Caixa de Presente (644); o resto fica no chão | `pickupitems.txt` (`gen_pickupitems.pl ... 526 518 2286 644 --sem-acessorios`) |
 | White Potion com HP < 60% (Red Herb < 50% só se acabarem); senta com HP < 55% até 90% | `useSelf_item`, `sitAuto_hp_*` |
+| Abre a Caixa de Presente (Gift Box) assim que coleta (não vai para o storage) | `useSelf_item Gift Box`, `items_control.txt` |
 | Poção do Despertar sempre que o efeito acabar (só no mapa de farm, nível base ≥ 40, não com Berserk ativa) | `useSelf_item Awakening Potion` |
 | Peso ≥ 50%: `@storage` ali mesmo e guarda tudo exceto consumíveis | `storageAuto*`, `itemsMaxWeight_sellOrStore`, `items_control.txt` |
-| Usa Fly Wing para fugir se um MVP (lista completa pré-renovação) aparecer na tela | `mon_control.txt` (`-1 1`) |
-| Foge **andando** do Filhote de Hatii (Garm Baby 1515, lento) quando chega a ≤ 10 células | plugin `fleeMonster` (`fleeMonster_*` no config) |
-| Quando Bênção e Agilidade acabam em xmas_dun02: `@go 0` (o servidor buffa ao chegar em Prontera) | `macros.txt` (plugin macro) |
-| Ao morrer (ou sempre que estiver em Prontera) volta pela Teletransportadora (prontera 163 190, 1ª opção) | `portals_ragnawicked.txt` (exige rebuild da imagem) |
+| Usa Fly Wing para fugir se um MVP (lista completa pré-renovação, inclui Maya) aparecer na tela | `mon_control.txt` (`-1 1`) |
+| Quando Bênção e Agilidade acabam em anthell02: `@go 0` (o servidor buffa ao chegar em Prontera) | `macros.txt` (plugin macro) |
+| Ao morrer (ou sempre que estiver em Prontera) volta pela Teletransportadora (prontera 163 190, "Último destino") | `portals_ragnawicked.txt` (exige rebuild da imagem) |
 | Não grava/recompila portais durante o jogo | `portalRecord 0` |
+
+Em anthell02, Vitata dropa Geleia Real e Mel, e Giearth (só 3 no mapa) dropa Orelha de Elfo. No item_db
+pré-renovação do rAthena nenhum monstro dropa a Carta Larva de Andre (4018); ela está na lista de coleta
+caso o servidor a tenha adicionado.
 
 Para coletar só itens específicos (ex.: cartas, acessórios e Opala), gere o `pickupitems.txt` com
 `tools/gen_pickupitems.pl`, que usa o item_db pré-renovação do rAthena
 (instruções no cabeçalho do script). Para coletar outro item, passe o ID como argumento extra.
 
-O Obss (Bardo, `bots/conta4/control/`, conta 4) usa a mesma configuração, slot 0 (`char 0`), ataque corpo a corpo,
-com duas diferenças: não senta para descansar (`sitAuto_*` 0) e usa `@go 0` com HP < 40% ou quando Bênção
-ou Agilidade acabar (`macros.txt`), voltando pela Teletransportadora.
-
 ## 6.1 Suporte — Ashiba (`bots/ashiba/control/`, conta 2)
 
-Priest nível 71. Acompanha o Matador (conta3) em `gef_fild14`, só cura e buffa; nunca ataca.
+Priest nível 71. Acompanha o King Slayer (jogado pelo dono) em `pay_dun00` junto com o Obss, só cura e buffa; nunca ataca.
 
 | Comportamento | Onde |
 |---|---|
-| Segue o Matador (mesma party); mapa fixo `gef_fild14` para voltar depois de morrer | `follow 1`, `followTarget Matador`, `lockMap`, `route_randomWalk 0` |
+| Segue o King Slayer (mesma party); mapa fixo `pay_dun00` para voltar depois de morrer | `follow 1`, `followTarget King Slayer`, `lockMap`, `route_randomWalk 0` |
 | Não ataca nada, mesmo se for atacada | `attackAuto 0`, `mon_control.txt` (`all -1`) |
 | Mantém Agilidade, Bênção e Glória em si mesma (Glória vale para a party toda) | `useSelf_skill` |
 | Mantém Agilidade e Bênção em todos da party | `partySkill Increase Agility/Blessing` (`target_whenStatusInactive`) |
 | Cura nível 10 em quem estiver com HP < 50% (ela mesma ou a party) | `useSelf_skill Heal`, `partySkill Heal` |
-| Lex Aeterna no monstro que o Matador está batendo (a cada 3 s, só com SP > 30%) | `monsterSkill Lex Aeterna` + plugin `attackedBy` (`target_attackedBy Matador`) |
+| Lex Aeterna no monstro que o King Slayer está batendo (a cada 3 s, só com SP > 30%) | `monsterSkill Lex Aeterna` + plugin `attackedBy` (`target_attackedBy King Slayer`) |
 | Senta para recuperar SP com SP < 25% até 70% | `sitAuto_sp_*` |
 | HP < 30% ou SP < 10% no mapa: `@go 0` e volta pela Teletransportadora | `macros.txt` |
 | Ao morrer volta pela Teletransportadora (opção "Último destino") | `portals_ragnawicked.txt` |
 
 ## 6.2 Farm — Matador (`bots/conta3/control/`, conta 3)
 
-Assassino nível 67. Farma em `gef_fild14` com a Ashiba de suporte.
+Assassino nível 67. Farma sozinho em `anthell01`, na mesma missão do Kyo Sinx (seção 6).
 
 | Comportamento | Onde |
 |---|---|
-| Mapa fixo `gef_fild14`, entra pela Teletransportadora (opção "Último destino") | `lockMap`, `portals_ragnawicked.txt` |
-| Ataca tudo, exceto plantas e cogumelos; foge com Fly Wing do Orc Hero/Orc Lord (MVPs) | `mon_control.txt` (`all 1`) |
-| Coleta só cartas e Apple of Archer (2285/5265); o resto fica no chão | `pickupitems.txt` (`gen_pickupitems.pl ... 2285 5265 --sem-acessorios`) |
+| Mapa fixo `anthell01`, entra pela Teletransportadora (opção "Último destino") | `lockMap`, `portals_ragnawicked.txt` |
+| Ataca tudo, exceto ovos, plantas e cogumelos; foge com Fly Wing dos MVPs e da Maya Purple (1289) | `mon_control.txt` (`all 1`) |
+| Coleta o mesmo que o Kyo: cartas, Geleia Real, Mel, Orelha de Elfo e Caixa de Presente (aberta ao coletar) | `pickupitems.txt` (cópia do Kyo), `useSelf_item Gift Box` |
 | Pontos de atributo sempre em Agilidade (até 99) | `statsAddAuto_list 99 agi` |
 | Envenenar Arma sempre ativo (renova quando acaba) | `useSelf_skill Enchant Poison` |
 | Novice Potion com HP < 60% se não houver White Potion; repõe 200 do storage quando cai abaixo de 30 | `useSelf_item Novice Potion`, `getAuto Novice Potion` |
 | Peso ≥ 50%: `@storage` e guarda tudo exceto consumíveis e flechas | `storageAuto*`, `items_control.txt` |
-| Se ficar sem Bênção e Agilidade no mapa (Ashiba ausente): `@go 0` para rebuffar | `macros.txt` |
+| Quando Bênção e Agilidade acabam no mapa: `@go 0` para rebuffar | `macros.txt` |
 
 A opção "Último destino" depende da última viagem de cada personagem: ao trocar o mapa de um bot,
 faça a primeira viagem para o mapa novo manualmente.
+
+## 6.3 Suporte — Obss (Bardo, `bots/conta4/control/`, conta 4)
+
+Slot 0 (`char 0`). Segue o King Slayer em `pay_dun00` junto com a Ashiba e só toca músicas; nunca ataca.
+
+| Comportamento | Onde |
+|---|---|
+| Segue o King Slayer de perto (1 a 3 células); mapa fixo `pay_dun00` para voltar depois de morrer | `follow 1`, `followTarget King Slayer`, `followDistance*`, `lockMap` |
+| Não ataca nem coleta | `attackAuto 0`, `mon_control.txt` (`all -1`), `itemsTakeAuto 0` |
+| Ciclo de músicas quando falta Poema de Bragi ou Crepúsculo Sangrento no King Slayer: equipa Violino → Bragi → desequipa → equipa → Crepúsculo → desequipa (o efeito fica 20 s depois que a música para) | plugin `bardSongs` (`bardSongs_*` no config) |
+| Se o servidor não informar os status do King Slayer, repete o ciclo a cada 16 s; só com SP ≥ 80 e o alvo a até 3 células | `bardSongs_interval`, `bardSongs_minSp`, `bardSongs_maxDist` |
+| Violino nunca vai para o storage; se estiver lá, pega de volta no próximo `@storage` | `items_control.txt`, `getAuto Violin` |
+| Não senta para descansar; `@go 0` com HP < 40% e volta pela Teletransportadora | `sitAuto_*` 0, `macros.txt` |
+
+No pré-renovação a música do bardo não afeta ele mesmo; por isso a condição é o status do King Slayer.
 
 ## 7. Vários personagens
 
