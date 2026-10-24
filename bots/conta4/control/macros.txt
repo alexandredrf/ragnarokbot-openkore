@@ -13,3 +13,32 @@ macro irParaProntera {
 	log [recuperar] HP baixo, voltando para Prontera com @go 0
 	do c @go 0
 }
+
+# Follow x lockMap: com o follow ligado a IA nunca fica ociosa e o lockMap nao age.
+# Em Prontera (depois de morrer ou do @go 0) desliga o follow para o lockMap levar
+# de volta pela Teletransportadora; no mapa do grupo, liga de novo.
+automacro voltarSemSeguir {
+	map prontera
+	timeout 5
+	call naoSeguir
+}
+
+macro naoSeguir {
+	if (@config(follow) == 0) goto fim
+	log [grupo] Em Prontera: follow desligado para voltar a gef_fild14
+	do conf follow 0
+	:fim
+}
+
+automacro seguirNoMapa {
+	map gef_fild14
+	timeout 5
+	call seguir
+}
+
+macro seguir {
+	if (@config(follow) == 1) goto fim
+	log [grupo] De volta a gef_fild14: seguindo o King Slayer
+	do conf follow 1
+	:fim
+}

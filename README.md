@@ -142,7 +142,7 @@ Priest nível 71. Acompanha o King Slayer (jogado pelo dono) em `gef_fild14` jun
 | Lex Aeterna no monstro que o King Slayer está batendo (a cada 3 s, só com SP > 30%) | `monsterSkill Lex Aeterna` + plugin `attackedBy` (`target_attackedBy King Slayer`) |
 | Senta para recuperar SP com SP < 25% até 70% | `sitAuto_sp_*` |
 | HP < 30% ou SP < 10% no mapa: `@go 0` e volta pela Teletransportadora | `macros.txt` |
-| Ao morrer volta pela Teletransportadora (opção "Último destino") | `portals_ragnawicked.txt` |
+| Ao morrer volta pela Teletransportadora (opção "Último destino"); em Prontera desliga o follow para o lockMap agir e religa em gef_fild14 | `portals_ragnawicked.txt`, `macros.txt` |
 
 ## 6.2 Farm — Matador (`bots/conta3/control/`, conta 3)
 
@@ -174,7 +174,7 @@ Slot 0 (`char 0`). Segue o King Slayer em `gef_fild14` junto com a Ashiba e só 
 | Música cujo status o servidor não informa no King Slayer: repete a cada 16 s. Só toca com SP ≥ 80 e o alvo a até 3 células | `bardSongs_interval`, `bardSongs_minSp`, `bardSongs_maxDist` |
 | Entre as músicas senta perto do King Slayer parado para recuperar SP; levanta e segue quando ele anda | `bardSongs_sit 1`, `follow 1` |
 | Violino nunca vai para o storage; se estiver lá, pega de volta (o nome precisa dos slots: `Violin [3]`) | `items_control.txt`, `getAuto Violin [3]` |
-| Não senta para descansar; `@go 0` com HP < 40% e volta pela Teletransportadora | `sitAuto_*` 0, `macros.txt` |
+| Não senta para descansar; `@go 0` com HP < 40% e volta pela Teletransportadora (em Prontera desliga o follow para o lockMap agir) | `sitAuto_*` 0, `macros.txt` |
 
 No pré-renovação a música do bardo não afeta ele mesmo; por isso a condição é o status do King Slayer.
 
