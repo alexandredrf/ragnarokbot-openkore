@@ -800,7 +800,8 @@ npcTimeResponse
 npcWrongStepsMethod 0
 
 # Pega o Violino do storage (via @storage) se ele nao estiver no inventario.
-getAuto Violin {
+# O nome precisa dos slots ([3]), como aparece no inventario.
+getAuto Violin [3] {
 	minAmount 1
 	maxAmount 1
 	batchSize
@@ -1029,3 +1030,4 @@ bardSongs_songs Poem of Bragi, Assassin Cross of Sunset
 bardSongs_maxDist 3
 bardSongs_minSp 80
 bardSongs_interval 16
+bardSongs_sit 1

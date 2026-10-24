@@ -3,7 +3,8 @@
 # efeitos de varias musicas ficam ativos ao mesmo tempo no alvo.
 #
 # No pre-renovacao a musica nao afeta o proprio bardo, entao a condicao e o status do
-# alvo. Se o servidor nao informa os status dele, usa um intervalo fixo.
+# alvo. Musica cujo status o servidor nao informa no alvo: intervalo fixo. So toca as
+# musicas que faltam.
 #
 # config.txt:
 #   bardSongs_target Fulano                  # jogador que recebe as musicas; vazio desliga
@@ -12,6 +13,7 @@
 #   bardSongs_maxDist 3                      # so toca com o alvo a esta distancia ou menos
 #   bardSongs_minSp 80                       # SP minimo para comecar um ciclo
 #   bardSongs_interval 16                    # segundos entre ciclos sem status do alvo
+#   bardSongs_sit 1                          # senta perto do alvo parado entre os ciclos (SP)
 package bardSongs;
 
 use strict;
@@ -29,7 +31,7 @@ my %status = (
 	'Assassin Cross of Sunset' => 'EFST_ASSASSINCROSS',
 );
 
-my (@steps, $stepTime, $lastCycle, $statusKnown, %warned);
+my (@steps, $stepTime, $lastCycle, $lastSit, %seen, %lastCast, %warned);
 
 sub unload { Plugins::delHooks($hooks) }
 
@@ -51,13 +53,32 @@ sub target {
 	return;
 }
 
-# Precisa de musica se algum efeito falta no alvo; sem status do alvo, por intervalo.
-sub needsSongs {
+# Musicas que faltam no alvo. Musica cujo status o servidor ja mostrou no alvo: pelo
+# status; senao, pelo intervalo desde a ultima vez que foi tocada.
+sub missingSongs {
 	my ($player) = @_;
-	my @handles = map { $status{$_} } songs();
-	$statusKnown = 1 if grep { $player->{statuses}{$_} } @handles;
-	return timeOut($lastCycle, $config{bardSongs_interval} || 16) unless $statusKnown;
-	return grep { !$player->{statuses}{$_} } @handles;
+	my $interval = $config{bardSongs_interval} || 16;
+	return grep {
+		my $handle = $status{$_};
+		$seen{$_} = 1 if $handle && $player->{statuses}{$handle};
+		$seen{$_} ? !$player->{statuses}{$handle} : timeOut($lastCast{$_}, $interval);
+	} songs();
+}
+
+# Entre um ciclo e outro: senta perto do alvo parado para recuperar SP; levanta quando
+# ele se afasta (o follow anda atras dele).
+sub restOrFollow {
+	my ($player, $dist) = @_;
+	return unless $config{bardSongs_sit} && timeOut($lastSit, 2);
+	my $still = $player->{pos}{x} == $player->{pos_to}{x} && $player->{pos}{y} == $player->{pos_to}{y};
+	if ($char->{sitting} && ($dist > ($config{bardSongs_maxDist} || 3) || !$still)) {
+		stand();
+		$lastSit = time;
+	} elsif (!$char->{sitting} && $still && $dist <= ($config{bardSongs_maxDist} || 3)
+		&& $char->{sp} < $char->{sp_max} && (AI::isIdle() || AI::is('follow'))) {
+		sit();
+		$lastSit = time;
+	}
 }
 
 sub onAI {
@@ -71,14 +92,17 @@ sub onAI {
 	}
 
 	return if $config{lockMap} && $field->baseName ne $config{lockMap};
-	return if $char->{sp} < ($config{bardSongs_minSp} || 0);
 	my $player = target() or return;
 	my $dist = blockDistance(calcPosFromPathfinding($field, $char), calcPosFromPathfinding($field, $player));
-	return if $dist > ($config{bardSongs_maxDist} || 3);
-	return unless needsSongs($player);
+	# Espera os status do alvo chegarem depois de um ciclo.
+	my @missing = timeOut($lastCycle, 3) ? missingSongs($player) : ();
+	if (!@missing || $dist > ($config{bardSongs_maxDist} || 3) || $char->{sp} < ($config{bardSongs_minSp} || 0)) {
+		restOrFollow($player, $dist);
+		return;
+	}
 	instrument() or return;
 
-	for my $song (songs()) {
+	for my $song (@missing) {
 		my $skill = Skill->new(auto => $song);
 		unless ($char->getSkillLevel($skill)) {
 			warning "[bardSongs] Skill '$song' nao aprendida.\n" unless $warned{$song}++;
@@ -87,7 +111,8 @@ sub onAI {
 		push @steps, ['equip'], ['cast', $skill], ['unequip'];
 	}
 	return unless @steps;
-	message "[bardSongs] Tocando: " . join(', ', songs()) . "\n", 'skill';
+	message "[bardSongs] Tocando: " . join(', ', @missing) . "\n", 'skill';
+	$lastCast{$_} = time for @missing;
 	$lastCycle = time;
 	$stepTime = 0;
 }
