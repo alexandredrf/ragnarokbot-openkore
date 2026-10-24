@@ -58,7 +58,7 @@
 # <attack> = 1
 
 
-# Farm em anthell01: ataca tudo; ovos, plantas e cogumelos ficam de fora (abaixo).
+# Farm em anthell02 (junto com o Kyo), foco no Mel: ataca tudo; plantas, cogumelos e outros ovos ficam de fora (abaixo).
 # Vitata dropa Geleia Real e Mel; Giearth dropa Orelha de Elfo.
 # Maya Purple (mini-chefe, nao e MVP): foge com Fly Wing como dos MVPs.
 1289 -1 1 0 # Maya Purple

@@ -5,7 +5,7 @@
 # volta pela Teletransportadora (prontera 163 190, ver portals_ragnawicked.txt).
 # timeout evita repetir o comando caso o @go demore ou falhe.
 automacro rebuffEmProntera {
-	map anthell01
+	map anthell02
 	status not Blessing
 	status not Increase Agility
 	timeout 30
@@ -20,7 +20,7 @@ macro irParaProntera {
 # O Matador nao senta para descansar (sitAuto_* 0 no config.txt): com pouca vida usa
 # @go 0, o servidor cura ao chegar em Prontera e o lockMap traz de volta.
 automacro vidaBaixa {
-	map anthell01
+	map anthell02
 	hp < 40%
 	timeout 20
 	call curarEmProntera

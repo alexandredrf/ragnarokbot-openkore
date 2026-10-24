@@ -214,7 +214,7 @@ cartMaxWeight 7900
 itemsTakeGreed 0
 itemsCheckWeight 1
 
-lockMap anthell01
+lockMap anthell02
 lockMap_x
 lockMap_y
 lockMap_randX

@@ -13,7 +13,7 @@ servidor privado RagnaWickeD (`137.131.220.233`, login 6900 / char 6121 / map 51
 | Farm Kyo Sinx | `anthell02` (seção 6): cartas, Geleia Real, Mel e Orelha de Elfo. |
 | Suporte Obss (conta4) | `alde_dun02` (seção 6.3): segue o King Slayer e toca Bragi e Crepúsculo Sangrento. |
 | Suporte Ashiba | `alde_dun02` (seção 6.1): segue o King Slayer, cura, buffa (Magnificat) e dá Lex Aeterna. |
-| Farm Matador (conta3) | `anthell01` (seção 6.2), mesma missão do Kyo. |
+| Farm Matador (conta3) | `anthell02` (seção 6.2), junto com o Kyo, foco no Mel. |
 
 ## Estrutura
 
@@ -146,12 +146,13 @@ Priest nível 71. Acompanha o King Slayer (jogado pelo dono) em `alde_dun02` jun
 
 ## 6.2 Farm — Matador (`bots/conta3/control/`, conta 3)
 
-Assassino nível 67. Farma sozinho em `anthell01`, na mesma missão do Kyo Sinx (seção 6).
+Assassino nível 67. Farma em `anthell02` junto com o Kyo Sinx (seção 6), com foco no Mel.
 
 | Comportamento | Onde |
 |---|---|
-| Mapa fixo `anthell01`, entra pela Teletransportadora (opção "Último destino") | `lockMap`, `portals_ragnawicked.txt` |
+| Mapa fixo `anthell02`, entra pela Teletransportadora (opção "Último destino") | `lockMap`, `portals_ragnawicked.txt` |
 | Ataca tudo, inclusive o Ovo de Andre (1097), exceto plantas, cogumelos e outros ovos; foge com Fly Wing dos MVPs e da Maya Purple (1289) | `mon_control.txt` (`all 1`) |
+| Ataca o Vitata primeiro (dropa Mel e Geleia Real) | `priority.txt` |
 | Coleta o mesmo que o Kyo: cartas, Geleia Real, Mel, Orelha de Elfo e Caixa de Presente (aberta ao coletar) | `pickupitems.txt` (cópia do Kyo), `useSelf_item Gift Box` |
 | Pontos de atributo sempre em Agilidade (até 99) | `statsAddAuto_list 99 agi` |
 | Envenenar Arma sempre ativo (renova quando acaba) | `useSelf_skill Enchant Poison` |
