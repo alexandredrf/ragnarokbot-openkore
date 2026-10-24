@@ -3,7 +3,7 @@
 # o Obss do mapa. @go 0 leva a Prontera (o servidor cura ao chegar) e o lockMap traz
 # de volta pela Teletransportadora (prontera 163 190, ver portals_ragnawicked.txt).
 automacro vidaBaixa {
-	map pay_dun00
+	map gef_fild14
 	hp < 40%
 	timeout 20
 	call irParaProntera

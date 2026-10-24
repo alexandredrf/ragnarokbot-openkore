@@ -214,7 +214,7 @@ cartMaxWeight 7900
 itemsTakeGreed 0
 itemsCheckWeight 1
 
-lockMap pay_dun00
+lockMap gef_fild14
 lockMap_x
 lockMap_y
 lockMap_randX

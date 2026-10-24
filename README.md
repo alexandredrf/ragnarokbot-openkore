@@ -11,8 +11,8 @@ servidor privado RagnaWickeD (`137.131.220.233`, login 6900 / char 6121 / map 51
 | `servers.txt` | **OK**: `kRO_Ragexe_2018_10_31a`, charBlockSize 155, `itemListUseOldType 1`, sem ofuscação. |
 | Login → char → map | **OK**: testado com a conta real (combate, coleta, inventário e `@storage` validados). |
 | Farm Kyo Sinx | `anthell02` (seção 6): cartas, Geleia Real, Mel e Orelha de Elfo. |
-| Suporte Obss (conta4) | `pay_dun00` (seção 6.3): segue o King Slayer e toca Bragi e Crepúsculo Sangrento. |
-| Suporte Ashiba | `pay_dun00` (seção 6.1): segue o King Slayer, cura, buffa e dá Lex Aeterna. |
+| Suporte Obss (conta4) | `gef_fild14` (seção 6.3): segue o King Slayer e toca Bragi e Crepúsculo Sangrento. |
+| Suporte Ashiba | `gef_fild14` (seção 6.1): segue o King Slayer, cura, buffa e dá Lex Aeterna. |
 | Farm Matador (conta3) | `anthell01` (seção 6.2), mesma missão do Kyo. |
 
 ## Estrutura
@@ -130,11 +130,11 @@ Para coletar só itens específicos (ex.: cartas, acessórios e Opala), gere o `
 
 ## 6.1 Suporte — Ashiba (`bots/ashiba/control/`, conta 2)
 
-Priest nível 71. Acompanha o King Slayer (jogado pelo dono) em `pay_dun00` junto com o Obss, só cura e buffa; nunca ataca.
+Priest nível 71. Acompanha o King Slayer (jogado pelo dono) em `gef_fild14` junto com o Obss, só cura e buffa; nunca ataca.
 
 | Comportamento | Onde |
 |---|---|
-| Segue o King Slayer (mesma party); mapa fixo `pay_dun00` para voltar depois de morrer | `follow 1`, `followTarget King Slayer`, `lockMap`, `route_randomWalk 0` |
+| Segue o King Slayer (mesma party); mapa fixo `gef_fild14` para voltar depois de morrer | `follow 1`, `followTarget King Slayer`, `lockMap`, `route_randomWalk 0` |
 | Não ataca nada, mesmo se for atacada | `attackAuto 0`, `mon_control.txt` (`all -1`) |
 | Mantém Agilidade, Bênção e Glória em si mesma (Glória vale para a party toda) | `useSelf_skill` |
 | Mantém Agilidade e Bênção em todos da party | `partySkill Increase Agility/Blessing` (`target_whenStatusInactive`) |
@@ -164,11 +164,11 @@ faça a primeira viagem para o mapa novo manualmente.
 
 ## 6.3 Suporte — Obss (Bardo, `bots/conta4/control/`, conta 4)
 
-Slot 0 (`char 0`). Segue o King Slayer em `pay_dun00` junto com a Ashiba e só toca músicas; nunca ataca.
+Slot 0 (`char 0`). Segue o King Slayer em `gef_fild14` junto com a Ashiba e só toca músicas; nunca ataca.
 
 | Comportamento | Onde |
 |---|---|
-| Segue o King Slayer de perto (1 a 3 células); mapa fixo `pay_dun00` para voltar depois de morrer | `follow 1`, `followTarget King Slayer`, `followDistance*`, `lockMap` |
+| Segue o King Slayer de perto (1 a 3 células); mapa fixo `gef_fild14` para voltar depois de morrer | `follow 1`, `followTarget King Slayer`, `followDistance*`, `lockMap` |
 | Não ataca nem coleta | `attackAuto 0`, `mon_control.txt` (`all -1`), `itemsTakeAuto 0` |
 | Toca a música que falta no King Slayer (Poema de Bragi, Crepúsculo Sangrento): equipa o Violino, toca e desequipa; o efeito fica 20 s depois que a música para, então cada uma é renovada a cada ~21 s | plugin `bardSongs` (`bardSongs_*` no config) |
 | Música cujo status o servidor não informa no King Slayer: repete a cada 16 s. Só toca com SP ≥ 80 e o alvo a até 3 células | `bardSongs_interval`, `bardSongs_minSp`, `bardSongs_maxDist` |
