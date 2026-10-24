@@ -158,6 +158,7 @@ Assassino nível 67. Farma sozinho em `anthell01`, na mesma missão do Kyo Sinx 
 | Novice Potion com HP < 60% se não houver White Potion; repõe 200 do storage quando cai abaixo de 30 | `useSelf_item Novice Potion`, `getAuto Novice Potion` |
 | Peso ≥ 50%: `@storage` e guarda tudo exceto consumíveis e flechas | `storageAuto*`, `items_control.txt` |
 | Quando Bênção e Agilidade acabam no mapa: `@go 0` para rebuffar | `macros.txt` |
+| Não senta para descansar; `@go 0` com HP < 40% no mapa ou < 80% em Prontera (depois de morrer), o servidor cura ao chegar | `sitAuto_*` 0, `macros.txt` |
 
 A opção "Último destino" depende da última viagem de cada personagem: ao trocar o mapa de um bot,
 faça a primeira viagem para o mapa novo manualmente.
