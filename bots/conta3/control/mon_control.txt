@@ -69,7 +69,7 @@ all 1 0 0
 1008 0 0 0 # Pupa
 1047 0 0 0 # PecoPeco Egg
 1048 0 0 0 # Thief Bug Egg
-1097 0 0 0 # Ant Egg
+1097 1 0 0 # Ant Egg (Ovo de Andre): atacado, dropa a Carta Ovo de Andre (4013)
 
 ##### Alchemist Summons ####
 # Summoned Parasite

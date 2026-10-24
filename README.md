@@ -109,7 +109,7 @@ Validado: login → seleção de personagem (slot 1, `char 1` no config) → map
 | Comportamento | Onde |
 |---|---|
 | Mapa fixo `anthell02`, anda aleatoriamente procurando alvos | `lockMap`, `route_randomWalk 1` |
-| Ataca tudo, exceto ovos, plantas e cogumelos (por ID; o servidor manda nomes em português) | `mon_control.txt` (`all 1`) |
+| Ataca tudo, inclusive o Ovo de Andre (Ant Egg 1097, dropa a Carta Ovo de Andre), exceto plantas, cogumelos e outros ovos (por ID; o servidor manda nomes em português) | `mon_control.txt` (`all 1`) |
 | Coleta só cartas, Geleia Real (526), Mel (518), Orelha de Elfo (2286) e Caixa de Presente (644); o resto fica no chão | `pickupitems.txt` (`gen_pickupitems.pl ... 526 518 2286 644 --sem-acessorios`) |
 | White Potion com HP < 60% (Red Herb < 50% só se acabarem); não senta para descansar: `@go 0` com HP < 40% no mapa ou < 80% em Prontera (depois de morrer), o servidor cura ao chegar | `useSelf_item`, `sitAuto_*` 0, `macros.txt` |
 | Abre a Caixa de Presente (Gift Box) assim que coleta (não vai para o storage) | `useSelf_item Gift Box`, `items_control.txt` |
@@ -151,7 +151,7 @@ Assassino nível 67. Farma sozinho em `anthell01`, na mesma missão do Kyo Sinx 
 | Comportamento | Onde |
 |---|---|
 | Mapa fixo `anthell01`, entra pela Teletransportadora (opção "Último destino") | `lockMap`, `portals_ragnawicked.txt` |
-| Ataca tudo, exceto ovos, plantas e cogumelos; foge com Fly Wing dos MVPs e da Maya Purple (1289) | `mon_control.txt` (`all 1`) |
+| Ataca tudo, inclusive o Ovo de Andre (1097), exceto plantas, cogumelos e outros ovos; foge com Fly Wing dos MVPs e da Maya Purple (1289) | `mon_control.txt` (`all 1`) |
 | Coleta o mesmo que o Kyo: cartas, Geleia Real, Mel, Orelha de Elfo e Caixa de Presente (aberta ao coletar) | `pickupitems.txt` (cópia do Kyo), `useSelf_item Gift Box` |
 | Pontos de atributo sempre em Agilidade (até 99) | `statsAddAuto_list 99 agi` |
 | Envenenar Arma sempre ativo (renova quando acaba) | `useSelf_skill Enchant Poison` |
