@@ -132,10 +132,10 @@ Priest nível 71. Acompanha o King Slayer (jogado pelo dono) em `alde_dun02` jun
 
 | Comportamento | Onde |
 |---|---|
-| Segue o King Slayer (mesma party); mapa fixo `alde_dun02` para voltar depois de morrer | `follow 1`, `followTarget King Slayer`, `lockMap`, `route_randomWalk 0` |
+| Segue o King Slayer de perto (1 a 3 células, mesma party); mapa fixo `alde_dun02` para voltar depois de morrer | `follow 1`, `followTarget King Slayer`, `followDistance*`, `lockMap`, `route_randomWalk 0` |
 | Não ataca nada, mesmo se for atacada | `attackAuto 0`, `mon_control.txt` (`all -1`) |
 | Mantém Agilidade, Bênção e Magnificat em si mesma (Magnificat vale para a party toda) | `useSelf_skill` |
-| Mantém Agilidade e Bênção em todos da party | `partySkill Increase Agility/Blessing` (`target_whenStatusInactive`) |
+| Mantém Agilidade, Bênção e Escudo Sagrado (Kyrie Eleison, renovado quando quebra) em todos da party e Escudo Sagrado em si mesma | `partySkill Increase Agility/Blessing/Kyrie Eleison` (`target_whenStatusInactive`), `useSelf_skill Kyrie Eleison` |
 | Cura nível 10 em quem estiver com HP < 50% (ela mesma ou a party) | `useSelf_skill Heal`, `partySkill Heal` |
 | Lex Aeterna no monstro que o King Slayer está batendo (a cada 3 s, só com SP > 30%) | `monsterSkill Lex Aeterna` + plugin `attackedBy` (`target_attackedBy King Slayer`) |
 | Senta para recuperar SP com SP < 25% até 70% | `sitAuto_sp_*` |

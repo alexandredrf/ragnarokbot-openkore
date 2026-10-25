@@ -195,8 +195,8 @@ followTarget King Slayer
 followEmotion 1
 followEmotion_distance 4
 followFaceDirection 0
-followDistanceMax 6
-followDistanceMin 3
+followDistanceMax 3
+followDistanceMin 1
 followLostStep 12
 followSitAuto 0
 followBot 0
@@ -667,6 +667,12 @@ useSelf_skill Blessing {
 	timeout 3
 }
 
+useSelf_skill Kyrie Eleison {
+	whenStatusInactive Kyrie Eleison
+	sp > 60
+	timeout 3
+}
+
 useSelf_skill Magnificat {
 	whenStatusInactive Magnificat
 	sp > 40
@@ -714,6 +720,16 @@ partySkill Blessing {
 	maxDist 9
 	target
 	target_whenStatusInactive Blessing
+	sp > 60
+	target_timeout 3
+}
+
+# Escudo Sagrado (Kyrie Eleison): renova quando o escudo quebra ou acaba.
+partySkill Kyrie Eleison {
+	dist 1
+	maxDist 9
+	target
+	target_whenStatusInactive Kyrie Eleison
 	sp > 60
 	target_timeout 3
 }
