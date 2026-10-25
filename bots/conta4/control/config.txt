@@ -651,13 +651,15 @@ doCommand {
 	# [checkSelfCondition]
 }
 
-useSelf_skill {
-	lvl
+# Concentracao (Improve Concentration): +AGI e +DES, que aumentam o efeito do Crepusculo
+# Sangrento (AGI) e do Poema de Bragi (DES). Sempre ativa no mapa do grupo.
+useSelf_skill Improve Concentration {
+	whenStatusInactive Improve Concentration
+	inLockOnly 1
+	sp > 30
 	maxCastTime 0
 	minCastTime 0
-	smartEncore 0
-	noSmartHeal 0
-	# [checkSelfCondition]
+	timeout 3
 }
 
 useSelf_skill_smartHeal 1

@@ -173,6 +173,7 @@ Slot 0 (`char 0`). Segue o King Slayer em `alde_dun02` junto com a Ashiba e só 
 | Música cujo status o servidor não informa no King Slayer: repete a cada 16 s. Só toca com SP ≥ 80 e o alvo a até 3 células | `bardSongs_interval`, `bardSongs_minSp`, `bardSongs_maxDist` |
 | Entre as músicas senta perto do King Slayer parado para recuperar SP; levanta e segue quando ele anda | `bardSongs_sit 1`, `follow 1` |
 | Violino nunca vai para o storage; se estiver lá, pega de volta (o nome precisa dos slots: `Violin [3]`) | `items_control.txt`, `getAuto Violin [3]` |
+| Concentração (Improve Concentration) sempre ativa no mapa: +AGI e +DES aumentam o efeito do Crepúsculo (AGI) e do Bragi (DES) | `useSelf_skill Improve Concentration` |
 | Não senta para descansar; `@go 0` com HP < 40% e volta pela Teletransportadora (em Prontera desliga o follow para o lockMap agir) | `sitAuto_*` 0, `macros.txt` |
 
 No pré-renovação a música do bardo não afeta ele mesmo; por isso a condição é o status do King Slayer.
