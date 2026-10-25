@@ -214,7 +214,7 @@ cartMaxWeight 7900
 itemsTakeGreed 0
 itemsCheckWeight 1
 
-lockMap anthell02
+lockMap xmas_dun02
 lockMap_x
 lockMap_y
 lockMap_randX
@@ -1021,7 +1021,7 @@ avoidObstaclesDefaultPortals {
 
 
 ######## Plugin fleeMonster (plugins/fleeMonster) ########
-# Desligado em anthell02 (fleeMonster_ids vazio).
-fleeMonster_ids
+# Foge andando, sem asa, do Filhote de Hatii (Garm Baby).
+fleeMonster_ids 1515
 fleeMonster_dist 10
 fleeMonster_runDist 15

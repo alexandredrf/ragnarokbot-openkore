@@ -10,10 +10,10 @@ servidor privado RagnaWickeD (`137.131.220.233`, login 6900 / char 6121 / map 51
 | Imagem Docker | **OK**: build testado (Docker 29.8, OpenKore `e0b04ee` fixado, XSTools via `scons`, portais pré-compilados). |
 | `servers.txt` | **OK**: `kRO_Ragexe_2018_10_31a`, charBlockSize 155, `itemListUseOldType 1`, sem ofuscação. |
 | Login → char → map | **OK**: testado com a conta real (combate, coleta, inventário e `@storage` validados). |
-| Farm Kyo Sinx | `anthell02` (seção 6): cartas, Geleia Real, Mel e Orelha de Elfo. |
+| Farm Kyo Sinx | `xmas_dun02` (seção 6): Presentes, coleta tudo. |
 | Suporte Obss (conta4) | `alde_dun02` (seção 6.3): segue o King Slayer e toca Bragi e Crepúsculo Sangrento. |
 | Suporte Ashiba | `alde_dun02` (seção 6.1): segue o King Slayer, cura, buffa (Magnificat) e dá Lex Aeterna. |
-| Farm Matador (conta3) | `anthell02` (seção 6.2), junto com o Kyo, foco no Mel. |
+| Farm Matador (conta3) | `xmas_dun02` (seção 6.2), junto com o Kyo, Presentes. |
 
 ## Estrutura
 
@@ -108,21 +108,19 @@ Validado: login → seleção de personagem (slot 1, `char 1` no config) → map
 
 | Comportamento | Onde |
 |---|---|
-| Mapa fixo `anthell02`, anda aleatoriamente procurando alvos | `lockMap`, `route_randomWalk 1` |
-| Ataca tudo, inclusive o Ovo de Andre (Ant Egg 1097, dropa a Carta Ovo de Andre), exceto plantas, cogumelos e outros ovos (por ID; o servidor manda nomes em português) | `mon_control.txt` (`all 1`) |
-| Coleta só cartas, Geleia Real (526), Mel (518), Orelha de Elfo (2286) e Caixa de Presente (644); o resto fica no chão | `pickupitems.txt` (`gen_pickupitems.pl ... 526 518 2286 644 --sem-acessorios`) |
+| Mapa fixo `xmas_dun02` (junto com o Matador), anda aleatoriamente procurando alvos | `lockMap`, `route_randomWalk 1` |
+| Ataca só Presente (Myst Case 1249) e Soldadinho de Chumbo (Cruiser 1248); os demais só se atacarem primeiro | `mon_control.txt` (`all 0`) |
+| Coleta tudo do chão | `pickupitems.txt` (`all 2`) |
+| Ignora plantas, cogumelos e ovos (por ID; o servidor manda nomes em português) | `mon_control.txt` |
 | White Potion com HP < 60% (Red Herb < 50% só se acabarem); não senta para descansar: `@go 0` com HP < 40% no mapa ou < 80% em Prontera (depois de morrer), o servidor cura ao chegar | `useSelf_item`, `sitAuto_*` 0, `macros.txt` |
 | Abre a Caixa de Presente (Gift Box) assim que coleta (não vai para o storage) | `useSelf_item Gift Box`, `items_control.txt` |
 | Poção do Despertar sempre que o efeito acabar (só no mapa de farm, nível base ≥ 40, não com Berserk ativa) | `useSelf_item Awakening Potion` |
 | Peso ≥ 50%: `@storage` ali mesmo e guarda tudo exceto consumíveis | `storageAuto*`, `itemsMaxWeight_sellOrStore`, `items_control.txt` |
-| Usa Fly Wing para fugir se um MVP (lista completa pré-renovação, inclui Maya) aparecer na tela | `mon_control.txt` (`-1 1`) |
-| Quando Bênção e Agilidade acabam em anthell02: `@go 0` (o servidor buffa ao chegar em Prontera) | `macros.txt` (plugin macro) |
+| Usa Fly Wing para fugir se um MVP (lista completa pré-renovação) aparecer na tela | `mon_control.txt` (`-1 1`) |
+| Foge **andando** do Filhote de Hatii (Garm Baby 1515, lento) quando chega a ≤ 10 células | plugin `fleeMonster` (`fleeMonster_*` no config) |
+| Quando Bênção e Agilidade acabam em xmas_dun02: `@go 0` (o servidor buffa ao chegar em Prontera) | `macros.txt` (plugin macro) |
 | Ao morrer (ou sempre que estiver em Prontera) volta pela Teletransportadora (prontera 163 190, "Último destino") | `portals_ragnawicked.txt` (exige rebuild da imagem) |
 | Não grava/recompila portais durante o jogo | `portalRecord 0` |
-
-Em anthell02, Vitata dropa Geleia Real e Mel, e Giearth (só 3 no mapa) dropa Orelha de Elfo. No item_db
-pré-renovação do rAthena nenhum monstro dropa a Carta Larva de Andre (4018); ela está na lista de coleta
-caso o servidor a tenha adicionado.
 
 Para coletar só itens específicos (ex.: cartas, acessórios e Opala), gere o `pickupitems.txt` com
 `tools/gen_pickupitems.pl`, que usa o item_db pré-renovação do rAthena
@@ -146,14 +144,13 @@ Priest nível 71. Acompanha o King Slayer (jogado pelo dono) em `alde_dun02` jun
 
 ## 6.2 Farm — Matador (`bots/conta3/control/`, conta 3)
 
-Assassino nível 67. Farma em `anthell02` junto com o Kyo Sinx (seção 6), com foco no Mel.
+Assassino nível 67. Farma Presentes em `xmas_dun02` junto com o Kyo Sinx (seção 6).
 
 | Comportamento | Onde |
 |---|---|
-| Mapa fixo `anthell02`, entra pela Teletransportadora (opção "Último destino") | `lockMap`, `portals_ragnawicked.txt` |
-| Ataca tudo, inclusive o Ovo de Andre (1097), exceto plantas, cogumelos e outros ovos; foge com Fly Wing dos MVPs e da Maya Purple (1289) | `mon_control.txt` (`all 1`) |
-| Ataca o Vitata primeiro (dropa Mel e Geleia Real) | `priority.txt` |
-| Coleta o mesmo que o Kyo: cartas, Geleia Real, Mel, Orelha de Elfo e Caixa de Presente (aberta ao coletar) | `pickupitems.txt` (cópia do Kyo), `useSelf_item Gift Box` |
+| Mapa fixo `xmas_dun02`, entra pela Teletransportadora (opção "Último destino") | `lockMap`, `portals_ragnawicked.txt` |
+| Ataca só Presente (1249) e Soldadinho de Chumbo (1248); foge com Fly Wing dos MVPs e andando do Filhote de Hatii (1515) | `mon_control.txt` (`all 0`), plugin `fleeMonster` |
+| Coleta tudo do chão; a Caixa de Presente é aberta ao coletar | `pickupitems.txt` (`all 2`), `useSelf_item Gift Box` |
 | Pontos de atributo sempre em Agilidade (até 99) | `statsAddAuto_list 99 agi` |
 | Envenenar Arma sempre ativo (renova quando acaba) | `useSelf_skill Enchant Poison` |
 | Novice Potion com HP < 60% se não houver White Potion; repõe 200 do storage quando cai abaixo de 30 | `useSelf_item Novice Potion`, `getAuto Novice Potion` |

@@ -14,6 +14,4 @@
 #Obeaune
 #all
 
-# Vitata primeiro: dropa Mel (3,5%) e Geleia Real (2%). Nome como o servidor manda.
-Vitata
 all
